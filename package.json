@@ -1,21 +1,16 @@
 {
-  "dependencies": {
-    "express": "^5.2.1",
-    "localtunnel": "^2.0.2",
-    "qrcode": "^1.5.4",
-    "socket.io": "^4.8.3"
-  },
-  "name": "agile-presentaiton",
+  "name": "agile-presentation",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "type": "commonjs",
-  "devDependencies": {}
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "socket.io": "^4.8.3",
+    "qrcode": "^1.5.4"
+  }
 }
