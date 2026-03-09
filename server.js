@@ -24,9 +24,9 @@ app.use((req, res, next) => {
 // Serve the static files from current directory
 app.use(express.static(__dirname));
 
-// Redirect root to presentation deck
+// Redirect root to presentation deck (renamed to bypass browser cache completely)
 app.get('/', (req, res) => {
-    res.redirect('/presentation.html');
+    res.redirect('/deck.html');
 });
 
 // Quiz Data based on the presentation
