@@ -228,8 +228,6 @@
             </div>
 
             <!-- Audio -->
-            <audio id="snd-lobby" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3" loop
-                autoplay></audio>
             <audio id="snd-cheer" src="https://assets.mixkit.co/active_storage/sfx/2004/2004-preview.mp3"></audio>
         </div>
 
@@ -500,9 +498,7 @@
             'END': document.getElementById('screen-podium')
         };
 
-        const sndLobby = document.getElementById('snd-lobby');
         const sndCheer = document.getElementById('snd-cheer');
-        sndLobby.volume = 0.3;
         sndCheer.volume = 0.5;
 
         // 3D Player Name Sprites (Requires Three.js scene to be initialized first)
@@ -583,10 +579,7 @@
             if (screens[screenId]) screens[screenId].classList.add('active');
 
             if (screenId === 'LOBBY') {
-                sndLobby.play().catch(e => { });
                 podiumTriggered = false; // Reset so next game can reveal again
-            } else {
-                sndLobby.pause();
             }
         }
 
