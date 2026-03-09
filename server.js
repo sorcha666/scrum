@@ -11,10 +11,13 @@ const io = new Server(server, {
     cors: { origin: "*" }
 });
 
-// Enable CORS for all routes
+// Enable CORS and disable caching for all routes (to prevent browser cache issues on Render)
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.header("Pragma", "no-cache");
+    res.header("Expires", "0");
     next();
 });
 
