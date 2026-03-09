@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>XP, Lean, and Kanban: An Engineering Perspective</title>
+
+    <!-- Reveal.js core -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css" id="theme">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --xp-orange: #ea580c;
+            --lean-green: #16a34a;
+            --kanban-purple: #9333ea;
+            --text-main: #1e293b;
+        }
+
+        body,
+        html {
+            background: #f8fafc;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            color: var(--text-main);
+            overflow: hidden;
+            /* Prevent body scroll */
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* ThreeJS Canvas Background */
+        #bg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+            /* Let clicks pass through */
+        }
+
+        .reveal {
+            z-index: 10;
+            color: var(--text-main);
+        }
+
+        /* Reveal.js Slide Cards */
+        .reveal .slides section {
+            padding: 3rem !important;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            margin: auto;
+            transform-origin: center center;
+        }
+
+        .reveal .slides section::-webkit-scrollbar {
+            display: none;
+        }
+
+        .reveal .slides section {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3,
+        .reveal h4 {
+            text-transform: none;
+            font-weight: 800;
+            color: #0f172a;
+            text-shadow: none;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Adjusted font sizes for better fitting */
+        .reveal h1 {
+            font-size: 2.4rem;
+        }
+
+        .reveal h2 {
+            font-size: 1.8rem;
+        }
+
+        .reveal p,
+        .reveal li {
+            font-size: 0.95rem;
+            color: #334155;
+            line-height: 1.4;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            margin-bottom: 0.8rem;
+        }
+
+        .academic-def {
+            border-left: 4px solid #3b82f6;
+            margin: 0.8rem 0;
+            background: rgba(59, 130, 246, 0.05);
+            padding: 0.8rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Quiz Layout Fixes */
+        .quiz-card {
+            perspective: 1200px;
+            width: 100%;
+            height: 380px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .quiz-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-style: preserve-3d;
+        }
+
+        .quiz-card.flipped .quiz-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .quiz-card-front,
+        .quiz-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-card-back {
+            transform: rotateY(180deg);
+        }
+
+        .quiz-card-back.correct-face {
+            background: #f0fdf4;
+            border: 2px solid #22c55e;
+        }
+
+        .quiz-card-back.wrong-face {
+            background: #fef2f2;
+            border: 2px solid #ef4444;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 1rem;
+        }
+
+        /* STOP event bubbling from these buttons so left click isn't triggered as a slide advance */
+        .option-btn {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            color: #334155;
+            padding: 0.8rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .option-btn:hover {
+            background: #e2e8f0;
+            transform: scale(1.02);
+        }
+
+        .correct-btn {
+            background: #dcfce7 !important;
+            border-color: #22c55e !important;
+            color: #15803d !important;
+        }
+
+        .wrong-btn {
+            background: #fee2e2 !important;
+            border-color: #ef4444 !important;
+            color: #b91c1c !important;
+        }
+
+        .points-display {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: #ffffff;
+            padding: 8px 16px;
+            border-radius: 50px;
+            color: #2563eb;
+            font-family: monospace;
+            font-weight: 800;
+            font-size: 1.2rem;
+            z-index: 1000;
+            border: 2px solid #bfdbfe;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            transform: scale(0.9);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .points-display.active {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        /* Disable right click menu on the whole body so we can use it for navigation */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* University Logo Styling */
+        .uni-logo {
+            max-height: 70px;
+            /* Limit height rather than width to avoid pushing content down */
+            width: auto;
+            margin: 0 auto 0.5rem auto;
+            display: block;
+        }
+
+        .student-names {
+            font-size: 0.8rem !important;
+            color: #64748b !important;
+            font-weight: 600;
+            background: #f1f5f9;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 0.5rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        ul.engineering-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 0.5rem;
+        }
+
+        ul.engineering-list li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+            text-align: left;
+            gap: 0.6rem;
+        }
+
+        ul.engineering-list li i {
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        .icon-text-align {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+
+<body oncontextmenu="return false;"> <!-- Disable right click menu globally -->
+
+    <audio id="snd-correct" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3"></audio>
+    <audio id="snd-wrong" src="https://assets.mixkit.co/active_storage/sfx/2004/2004-preview.mp3"></audio>
+    <audio id="snd-cheer" src="https://assets.mixkit.co/active_storage/sfx/2003/2003-preview.mp3"></audio>
+
+    <div id="score-display" class="points-display">
+        <i class="fa-solid fa-graduation-cap text-blue-500"></i> Score: <span id="score-val">0</span>
+    </div>
+
+    <!-- ThreeJS Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Title Slide -->
+            <!-- Title Slide -->
+            <section data-transition="zoom" id="title-slide">
+
+                <!-- University Logo and Details -->
+                <div class="mb-4 text-center">
+                    <img src="logo_epi.png" alt="EPI Digital School Logo" class="uni-logo"
+                        style="max-height: 120px; width: auto; margin: 0 auto 0.8rem auto; display: block;"
+                        onerror="this.style.display='none'; document.getElementById('alt-icon').style.display='block';">
+                    <div id="alt-icon" style="display:none;"><i
+                            class="fa-solid fa-university text-5xl text-red-600 mb-2"></i></div>
+                    <p class="text-sm uppercase tracking-widest text-slate-500 font-bold m-0 p-0">
+                        EPI Digital School, Université de Sousse</p>
+                </div>
+
+                <h1 class="tracking-tight text-slate-800 mt-4 mb-2" style="font-size: 3.2rem;">Better Software
+                    Engineering</h1>
+                <h2 class="text-slate-500 font-medium mt-2 mb-4" style="font-size: 1.6rem;">Understanding XP, Lean, and
+                    Kanban</h2>
+
+                <div class="student-names shadow-sm py-2 px-6 mt-2 mb-6"
+                    style="font-size: 1.1rem; background: #f1f5f9; border-radius: 50px; display: inline-block; border: 1px solid #e2e8f0; color: #64748b; font-weight: 600;">
+                    <i class="fa-solid fa-users text-blue-500 mr-2"></i> Jouhaina Boutrif &bull; Sarra Chtioui &bull;
+                    Karima Chiha
+                </div>
+
+                <div class="grid grid-cols-3 gap-5 mt-4 w-full max-w-4xl mx-auto">
+                    <div class="glass-panel py-3 px-2 flex flex-col justify-center items-center"
+                        style="border-top: 4px solid var(--xp-orange); margin-bottom:0;">
+                        <i class="fa-solid fa-laptop-code text-3xl mb-2" style="color: var(--xp-orange)"></i>
+                        <h3 class="text-base font-bold mb-1">1. XP</h3>
+                        <p class="text-xs text-slate-500 m-0">Writing Better Code</p>
+                    </div>
+                    <div class="glass-panel py-3 px-2 flex flex-col justify-center items-center"
+                        style="border-top: 4px solid var(--lean-green); margin-bottom:0;">
+                        <i class="fa-solid fa-gauge-high text-3xl mb-2" style="color: var(--lean-green)"></i>
+                        <h3 class="text-base font-bold mb-1">2. Lean</h3>
+                        <p class="text-xs text-slate-500 m-0">Stopping Wasted Time</p>
+                    </div>
+                    <div class="glass-panel py-3 px-2 flex flex-col justify-center items-center"
+                        style="border-top: 4px solid var(--kanban-purple); margin-bottom:0;">
+                        <i class="fa-solid fa-chart-gantt text-3xl mb-2" style="color: var(--kanban-purple)"></i>
+                        <h3 class="text-base font-bold mb-1">3. Kanban</h3>
+                        <p class="text-xs text-slate-500 m-0">Managing Team Work</p>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 text-blue-800 text-xs font-bold py-2 px-4 rounded inline-block border border-blue-200 shadow-sm animate-pulse mt-6 mx-auto text-center block"
+                    style="width: fit-content;">
+                    <i class="fa-solid fa-computer-mouse mr-2"></i> TIP: Left-Click forward, Right-Click back
+                </div>
+                <aside class="notes">
+                    Hello everyone! We are Jouhaina, Sarra, and Karima from EPI Digital School, Sousse.<br><br>
+                    Today we are going to talk about how real software teams build products. We often hear the word
+                    "Agile," but what does it actually mean in practice?<br><br>
+                    It comes down to three main ideas: Extreme Programming (XP) helps us write better code. Lean helps
+                    us stop wasting time. And Kanban helps us organize the team's work so no one gets overwhelmed. Let's
+                    break them down clearly.
+                </aside>
+            </section>
+
+            <!-- 1. Intro -> The Problem -->
+            <section data-transition="convex">
+                <h2>The Big Problem: Code Decay</h2>
+                <div class="academic-def text-left">
+                    <strong class="text-slate-900 block mb-1 font-bold"><i
+                            class="fa-solid fa-bug text-blue-500 mr-2"></i>Technical Debt</strong>
+                    <span class="text-xs">When you quickly add new features to a project, the code gets messy. Over
+                        time, it becomes very hard to read, fix, or change. This is called technical debt.</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 items-stretch mt-3 text-left">
+                    <div class="glass-panel">
+                        <h4 class="text-lg font-bold text-slate-800 border-b pb-2 mb-3"><i
+                                class="fa-solid fa-anchor text-red-500 mr-2"></i>The Old Ways</h4>
+                        <p class="text-sm text-slate-600 m-0 leading-relaxed">People used to plan the whole project
+                            perfectly before
+                            writing code. But it consistently failed because customers always change their minds along
+                            the way, leading to massive wasted effort.</p>
+                    </div>
+                    <div class="glass-panel bg-blue-50 border-blue-200">
+                        <h4 class="text-lg font-bold text-slate-800 border-b pb-2 mb-3"><i
+                                class="fa-solid fa-flask text-blue-600 mr-2"></i>The Agile Ways</h4>
+                        <p class="text-sm text-slate-600 m-0 leading-relaxed">Instead of planning everything, we work in
+                            small, careful steps. We
+                            build a little, test it continually, get feedback early, and adjust immediately. We expect
+                            and welcome things to change.</p>
+                    </div>
+                </div>
+
+                <aside class="notes">
+                    Before we talk about solutions, let's understand the problem. The biggest problem in software is
+                    "Technical Debt." When you rush to build things, your code turns into a messy pile of spaghetti. It
+                    becomes impossible to update.<br><br>
+                    In the past, people tried to fix this by planning everything perfectly up front—called the Waterfall
+                    method. It didn't work because people always change what they want. Agile is the modern solution: we
+                    take small, careful steps. We test constantly, and we are always ready to change directions.
+                </aside>
+            </section>
+
+            <!-- 2. XP Slide 1: Introduction and Diagram -->
+            <section data-transition="zoom">
+                <h2>1. Extreme Programming (XP)</h2>
+                <h3 class="text-xl text-slate-500 mb-6 font-normal">Building a Safety Net for Engineers</h3>
+
+                <div class="grid grid-cols-2 gap-6 items-center">
+                    <div class="text-left">
+                        <p
+                            class="text-lg text-slate-700 leading-relaxed border-l-4 border-orange-500 pl-4 bg-orange-50 py-3 pr-3 rounded-r-lg">
+                            <strong>Extreme Programming</strong> is about taking the best coding habits and doing them
+                            constantly.
+                            It gives engineers a strict process so they never fear changing code.
+                        </p>
+                        <h4 class="text-xl font-bold mt-6 mb-3"><i
+                                class="fa-solid fa-arrows-spin text-blue-500 mr-2"></i> The XP Cycle</h4>
+                        <ul class="text-left text-lg space-y-3">
+                            <li><i class="fa-solid fa-arrow-right text-orange-500 mr-2"></i> Set the requirement.</li>
+                            <li><i class="fa-solid fa-arrow-right text-orange-500 mr-2"></i> Write a failing test.</li>
+                            <li><i class="fa-solid fa-arrow-right text-orange-500 mr-2"></i> Write simple code to pass.
+                            </li>
+                            <li><i class="fa-solid fa-arrow-right text-orange-500 mr-2"></i> Clean and Refactor.</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        class="flex flex-col items-center justify-center p-6 bg-slate-50 rounded-xl border border-slate-200 shadow-sm relative">
+                        <div
+                            class="w-32 h-32 bg-red-100 rounded-full flex items-center justify-center border-4 border-red-400 z-10">
+                            <span class="font-bold text-red-600">1. FAIL</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-down-long text-3xl text-slate-300 my-2"></i>
+                        <div
+                            class="w-32 h-32 bg-green-100 rounded-full flex items-center justify-center border-4 border-green-400 z-10">
+                            <span class="font-bold text-green-600">2. PASS</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-down-long text-3xl text-slate-300 my-2"></i>
+                        <div
+                            class="w-32 h-32 bg-blue-100 rounded-full flex items-center justify-center border-4 border-blue-400 z-10">
+                            <span class="font-bold text-blue-600">3. REFACTOR</span>
+                        </div>
+
+                        <!-- Circular arrow indicating the loop (simplified with CSS) -->
+                        <div
+                            class="absolute right-4 top-1/2 transform -translate-y-1/2 h-3/4 w-1/2 border-r-4 border-t-4 border-b-4 border-dashed border-slate-300 rounded-r-full">
+                        </div>
+                        <i
+                            class="fa-solid fa-caret-up text-4xl text-slate-300 absolute right-4 top-12 transform translate-x-1/2"></i>
+                    </div>
+                </div>
+
+                <aside class="notes">
+                    The first part of Agile is Extreme Programming, or XP. It's all about providing a safety net for
+                    developers.
+                    The core of XP is a strict cycle. First, you start with a failing test. Then you write just enough
+                    code to pass it perfectly. Then you refactor and clean it.
+                    This simple cycle means your code is always working and always tested.
+                </aside>
+            </section>
+
+            <!-- 2. XP Slide 2: Core Practices -->
+            <section data-transition="convex">
+                <h2>XP Core Practices</h2>
+                <h3 class="text-xl text-slate-500 mb-6 font-normal">Turning best practices up to maximum.</h3>
+
+                <div class="grid grid-cols-3 gap-5 text-left items-stretch">
+                    <div class="glass-panel p-4 flex flex-col items-center text-center">
+                        <div class="bg-orange-100 p-4 rounded-full mb-4">
+                            <i class="fa-solid fa-vial-circle-check text-4xl text-orange-600"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2">Test First (TDD)</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">Write automated tests <em>before</em> you
+                            write the actual code. This ensures your code fundamentally works and prevents future
+                            changes from breaking it.</p>
+                    </div>
+
+                    <div class="glass-panel p-4 flex flex-col items-center text-center">
+                        <div class="bg-indigo-100 p-4 rounded-full mb-4">
+                            <i class="fa-solid fa-users text-4xl text-indigo-600"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2">Pair Programming</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">Two engineers sit at one computer. One person
+                            types the code, while the other reviews it in real-time. This drastically cuts bugs and
+                            shares knowledge.</p>
+                    </div>
+
+                    <div class="glass-panel p-4 flex flex-col items-center text-center">
+                        <div class="bg-teal-100 p-4 rounded-full mb-4">
+                            <i class="fa-solid fa-server text-4xl text-teal-600"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2">Merge Often (CI)</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">Continuous Integration means bringing
+                            everyone's code together every single day. This prevents massive merge conflicts at the end
+                            of a sprint.</p>
+                    </div>
+                </div>
+
+                <aside class="notes">
+                    Beyond the cycle, XP relies on three massive practices.
+                    Test-Driven Development keeps bugs out. Pair Programming ensures two brains are always on the
+                    problem. continuous integration means we don't have a giant broken mess at the end of the week.
+                    These practices turn good habits into mandatory rules.
+                </aside>
+            </section>
+
+            <!-- 3. Lean Slide 1: Principles -->
+            <section data-transition="slide">
+                <h2>2. Lean Engineering</h2>
+                <h3 class="text-xl text-slate-500 mb-6 font-normal">Less Waste. Faster Results.</h3>
+
+                <div class="grid grid-cols-3 gap-6 text-left items-stretch max-w-5xl mx-auto">
+                    <div class="glass-panel p-5 flex flex-col justify-center text-center">
+                        <i class="fa-solid fa-trash-can text-5xl text-green-600 mb-4 mx-auto"></i>
+                        <h4 class="text-lg font-bold mb-2">Eliminate Waste</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed m-0">Waste is anything the customer doesn't
+                            care about. Half-finished code, endless meetings, and unused features must be stopped
+                            aggressively.</p>
+                    </div>
+                    <div class="glass-panel p-5 flex flex-col justify-center text-center">
+                        <i class="fa-solid fa-brain text-5xl text-blue-600 mb-4 mx-auto"></i>
+                        <h4 class="text-lg font-bold mb-2">Decide Late</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed m-0">Don't lock yourself into huge design
+                            choices on day one. Wait until you have maximum information before making irreversible
+                            decisions.</p>
+                    </div>
+                    <div class="glass-panel p-5 flex flex-col justify-center text-center">
+                        <i class="fa-solid fa-rocket text-5xl text-red-600 mb-4 mx-auto"></i>
+                        <h4 class="text-lg font-bold mb-2">Deliver Fast</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed m-0">Give users a small, working version as
+                            fast as possible. Real feedback from a launched product is infinitely better than theory.
+                        </p>
+                    </div>
+                </div>
+
+                <aside class="notes">
+                    The second core method is Lean Engineering. Lean came from Toyota's factories.
+                    The entire goal is identifying what brings value and killing everything else.
+                    We eliminate waste like half-finished code. We wait to make big decisions until we actually know
+                    what we are doing.
+                    And we deliver tiny pieces fast so we know if we are on the right track.
+                </aside>
+            </section>
+
+            <!-- 3. Lean Slide 2: Multitasking Warning -->
+            <section data-transition="convex">
+                <h2>The Myth of Multitasking</h2>
+                <h3 class="text-xl text-slate-500 mb-6 font-normal">Why doing more means finishing less.</h3>
+
+                <div class="grid grid-cols-2 gap-8 items-center max-w-5xl mx-auto">
+                    <div class="glass-panel bg-red-50 border-red-200 p-6 text-left">
+                        <h4 class="text-2xl font-bold text-red-700 mb-4 border-b border-red-200 pb-2"><i
+                                class="fa-solid fa-triangle-exclamation mr-2"></i>Context Switching</h4>
+                        <p class="text-lg text-slate-700 leading-relaxed mb-4">
+                            If you work on 5 major projects at the exact same time, you are not being productive. You
+                            are constantly losing mental context jumping between them.
+                        </p>
+                        <ul class="text-base text-slate-600 space-y-2 list-disc ml-5">
+                            <li>Higher stress and burnout.</li>
+                            <li>Drastically increased error rate.</li>
+                            <li>Zero features actually finished for the user.</li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-panel bg-green-50 border-green-200 p-6 text-left shadow-lg">
+                        <h4 class="text-2xl font-bold text-green-700 mb-4 border-b border-green-200 pb-2"><i
+                                class="fa-solid fa-scale-balanced mr-2"></i>Little's Law</h4>
+                        <p class="text-lg text-slate-700 leading-relaxed">
+                            A mathematical theorem used in queuing theory:
+                        </p>
+                        <div
+                            class="bg-white p-4 rounded border border-green-300 shadow-sm text-center my-4 font-mono text-xl font-bold text-slate-800">
+                            Time = Items / Finish Rate
+                        </div>
+                        <p class="text-base text-slate-600 leading-relaxed">
+                            To finish a backlog faster, you MUST reduce the number of items currently in progress.
+                            <strong>Stop starting, start finishing.</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <aside class="notes">
+                    The most important part of Lean is understanding multitasking. Math actually proves that
+                    multitasking is bad.
+                    If you try to juggle 5 huge assignments at the exact same time, they all take much longer to cross
+                    the finish line.
+                    You must focus on a single piece of value, finish it completely, and only then start the next one.
+                </aside>
+            </section>
+
+            <!-- 4. Kanban Slide 1: Introduction -->
+            <section data-transition="slide">
+                <h2>3. Kanban Rules</h2>
+                <h3 class="text-xl text-slate-500 mb-6 font-normal">Visually managing work to prevent team burnout.</h3>
+
+                <div class="grid grid-cols-[1fr_2fr] gap-6 text-left items-center max-w-5xl mx-auto">
+                    <div>
+                        <ul class="text-lg space-y-6 text-slate-700">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-eye text-2xl text-purple-600 mt-1"></i>
+                                <div><strong class="block text-slate-900">1. Visualize Workflow</strong>Every single
+                                    task must be on the board. No hidden work.</div>
+                            </li>
+                            <li
+                                class="flex items-start gap-3 bg-purple-100 p-3 rounded-lg border border-purple-200 shadow-sm">
+                                <i class="fa-solid fa-hand text-2xl text-purple-600 mt-1"></i>
+                                <div><strong class="block text-slate-900">2. Limit WIP</strong>Strictly limit "Work in
+                                    Progress" to force task completion.</div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-wind text-2xl text-purple-600 mt-1"></i>
+                                <div><strong class="block text-slate-900">3. Manage Flow</strong>Measure how fast
+                                    tickets move and remove bottlenecks.</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-panel p-5 bg-slate-50 border-purple-200 h-full flex flex-col justify-center">
+                        <h4 class="text-2xl font-bold text-purple-800 mb-3 border-b border-purple-200 pb-2"><i
+                                class="fa-solid fa-road-barrier mr-2"></i>The WiP Limit Power</h4>
+                        <p class="text-lg text-slate-700 leading-relaxed">
+                            Kanban isn't just a list of sticky notes. It is an engine that <strong>stops work from
+                                piling up</strong> on the engineers.
+                            If the UI server is broken, tasks get stuck. The WIP limit forces everyone to stop coding
+                            new features and help fix the server.
+                        </p>
+                    </div>
+                </div>
+
+                <aside class="notes">
+                    The final method is Kanban. Lean told us that multitasking is bad. Kanban is the tool we use to
+                    actually prevent it from happening.
+                    We put all our tasks on a visual board. But the magic of Kanban isn't the board; it's the
+                    Work-In-Progress limit, or WIP limit.
+                    This limit legally stops the team from pulling in new work when they are already busy.
+                </aside>
+            </section>
+
+            <!-- 4. Kanban Slide 2: Board visualization -->
+            <section data-transition="convex">
+                <h2>The Kanban Board Experience</h2>
+                <h3 class="text-xl text-slate-500 mb-6 font-normal">A live look at workflow limits.</h3>
+
+                <!-- Kanban Board Visualization -->
+                <div class="glass-panel bg-slate-50 border-purple-300 p-6 shadow-xl max-w-4xl mx-auto">
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="text-xl font-bold text-slate-800 m-0"><i
+                                class="fa-solid fa-list-check text-purple-500 mr-2"></i>Engineering Team Board</h4>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-6 h-64 text-left">
+                        <!-- To Do -->
+                        <div class="border border-slate-300 rounded-lg bg-white p-4 shadow-inner flex flex-col">
+                            <div class="text-sm text-slate-500 font-bold mb-3 border-b pb-2">BACKLOG</div>
+                            <div
+                                class="bg-indigo-100 rounded text-sm font-medium px-3 py-2 mb-2 shadow text-indigo-800 border-l-4 border-indigo-500">
+                                Task 3: Auth System</div>
+                            <div
+                                class="bg-indigo-100 rounded text-sm font-medium px-3 py-2 mb-2 shadow text-indigo-800 border-l-4 border-indigo-500">
+                                Task 4: Database</div>
+                        </div>
+
+                        <!-- Doing -->
+                        <div class="border-2 border-red-400 rounded-lg bg-red-50 p-4 shadow-lg relative flex flex-col">
+                            <div
+                                class="text-sm text-red-700 font-bold mb-3 border-b border-red-200 pb-2 flex justify-between items-center">
+                                IN PROGRESS
+                                <span class="bg-red-600 text-white px-2 py-1 rounded text-xs">LIMIT: 2</span>
+                            </div>
+                            <div
+                                class="bg-white rounded text-sm font-bold px-3 py-2 mb-2 shadow border border-red-200 border-l-4 border-red-500 text-slate-700 relative z-10 hover:scale-105 transition-transform">
+                                Task 1: Graphics</div>
+                            <div
+                                class="bg-white rounded text-sm font-bold px-3 py-2 mb-2 shadow border border-red-200 border-l-4 border-red-500 text-slate-700 relative z-10 hover:scale-105 transition-transform">
+                                Task 2: API Route</div>
+
+                            <div
+                                class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs bg-red-900 text-white px-5 py-3 font-bold flex items-center rounded-full shadow-2xl z-30 animate-bounce cursor-pointer border-2 border-white w-max">
+                                <i class="fa-solid fa-hand text-red-300 mr-2 text-lg"></i> Maximum Capacity Reached!
+                            </div>
+                        </div>
+
+                        <!-- Done -->
+                        <div class="border border-emerald-200 rounded-lg bg-emerald-50 p-4 flex flex-col">
+                            <div class="text-sm text-emerald-700 font-bold border-b border-emerald-200 pb-2 mb-3">DONE
+                            </div>
+                            <div
+                                class="bg-emerald-100 rounded text-sm font-medium px-3 py-2 mb-2 shadow text-emerald-800 border-l-4 border-emerald-500 opacity-60 line-through">
+                                Setup Repo</div>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="notes">
+                    Look at the board behind me. The middle column has a Strict Limit of 2 tasks.
+                    Because 2 tasks are currently in progress, nobody on the team is allowed to touch the Auth System or
+                    Database yet!
+                    You MUST finish what you are doing, or help your teammates finish, before anything new is started.
+                    It acts as a shield against burnout.
+                </aside>
+            </section>
+
+            <!-- Conclusion Slide -->
+            <section data-transition="zoom">
+                <i class="fa-solid fa-graduation-cap text-6xl mb-3 text-slate-800 drop-shadow"></i>
+                <h1 class="text-3xl font-black mb-4 uppercase text-slate-900 tracking-wide">Conclusion</h1>
+
+                <div class="glass-panel text-left max-w-2xl mx-auto shadow-lg border-t-4 border-blue-500 p-6">
+                    <ul class="text-lg text-slate-700 space-y-4 font-medium">
+                        <li><i class="fa-solid fa-check-circle text-blue-500 mr-2"></i> <strong>Agile</strong> is about
+                            adapting to reality, not fighting it.</li>
+                        <li><i class="fa-solid fa-check-circle text-orange-500 mr-2"></i> <strong>XP</strong> gives
+                            engineers a safety net to write fearless code.</li>
+                        <li><i class="fa-solid fa-check-circle text-green-500 mr-2"></i> <strong>Lean</strong>
+                            ruthlessly cuts waste and stops multitasking.</li>
+                        <li><i class="fa-solid fa-check-circle text-purple-500 mr-2"></i> <strong>Kanban</strong>
+                            visually limits work to prevent team burnout.</li>
+                    </ul>
+                </div>
+
+                <aside class="notes">
+                    To wrap everything up, Agile is our modern way of working.
+                    XP helps us write code we trust. Lean helps us eliminate waste and stop juggling tasks. Kanban gives
+                    us the visual limits we need to stay focused.
+                    Thank you so much for listening. Now, it's time for the real test!
+                </aside>
+            </section>
+
+            <!-- QR Code Slide for Live Quiz -->
+            <section data-transition="convex">
+                <h1 class="text-4xl font-black mb-3 uppercase text-blue-600 tracking-wide drop-shadow-sm"><i
+                        class="fa-solid fa-gamepad mr-3"></i>Time to Play!</h1>
+                <h3 class="text-xl text-slate-600 mb-6">Take out your phones and scan the QR Code.</h3>
+
+                <div
+                    class="glass-panel p-6 inline-block bg-white border-2 border-slate-200 shadow-2xl rounded-2xl transform hover:scale-105 transition duration-300">
+                    <!-- Placeholder for the QR Code (using a generic API for now so it looks real) -->
+                    <div id="qr-placeholder"
+                        class="w-64 h-64 bg-white border border-slate-300 rounded-xl flex items-center justify-center relative overflow-hidden p-2">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://example.com/agile-quiz"
+                            alt="QR Code" class="w-full h-full object-contain" />
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <p
+                        class="text-lg font-bold text-slate-700 bg-blue-50 py-2 px-6 rounded-full inline-block border border-blue-200 shadow-sm animate-pulse mb-6">
+                        Waiting for players to join...
+                    </p>
+                    <br />
+                    <p class="text-xl font-black text-blue-600 mt-4 animate-bounce">
+                        <i class="fa-solid fa-arrow-right mr-2"></i> Press the right arrow key to open the dashboard!
+                    </p>
+                </div>
+
+                <aside class="notes">
+                    Take out your phones! We have prepared a live, interactive quiz so you can prove what you just
+                    learned.
+                    Scan the QR code on the screen and enter your name to join the lobby. Let's see who was paying
+                    attention!
+                </aside>
+            </section>
+
+            <!-- LIVE HOST DASHBOARD SLIDE (Embedded) -->
+            <section data-transition="zoom" class="w-full h-full p-0 m-0">
+                <iframe src="http://localhost:3000/host.html"
+                    class="w-full h-full border-4 border-slate-300 rounded-3xl shadow-2xl overflow-hidden"
+                    style="min-height: 700px;"></iframe>
+                <aside class="notes">
+                    This is the live dashboard. Press Start Quiz when ready.
+                </aside>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/highlight.min.js"></script>
+    <!-- Notes Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- ThreeJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+        // Init Reveal
+        Reveal.initialize({
+            hash: true,
+            transition: 'fade',
+            backgroundTransition: 'none',
+            plugins: [RevealHighlight, RevealNotes],
+            width: 1200,    // Increased base width for a larger box
+            height: 800,    // Increased base height for a larger box
+            margin: 0.08,   // Let Reveal properly margin the box to the screen
+            minScale: 0.1,
+            maxScale: 1.2,
+            disableLayout: false,
+            slideNumber: 'c/t',
+            keyboard: true,
+            controls: false, // hide the arrow controls since we are using mouse
+            center: true
+        });
+
+        // -------------------------
+        // Mouse Navigation Logic
+        // -------------------------
+        document.addEventListener('mousedown', function (event) {
+            // Prevent if it's not a primary click target (like clicking a button)
+            if (event.target.tagName === 'BUTTON' || event.target.closest('button')) {
+                return;
+            }
+            if (event.button === 0) {
+                // Left click -> Next
+                Reveal.next();
+            } else if (event.button === 2) {
+                // Right click -> Prev
+                Reveal.prev();
+            }
+        });
+
+        // -------------------------
+        // ThreeJS Background 3D Engine
+        // -------------------------
+        const canvas = document.getElementById('bg-canvas');
+        const scene = new THREE.Scene();
+        // Light theme fog fading to white
+        scene.fog = new THREE.FogExp2(0xf8fafc, 0.05);
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        const group = new THREE.Group();
+        scene.add(group);
+
+        // Geometries representing XP/Lean/Kanban abstractly
+        const geos = [
+            new THREE.TorusGeometry(1, 0.3, 16, 100), // XP loop
+            new THREE.OctahedronGeometry(1.2), // Lean sharp edges
+            new THREE.BoxGeometry(1.5, 1.5, 1.5) // Kanban box constraints
+        ];
+
+        // Colors mapping to our presentation theme
+        const colors = [0xea580c, 0x16a34a, 0x9333ea];
+
+        for (let i = 0; i < 60; i++) {
+            const material = new THREE.MeshPhongMaterial({
+                color: colors[Math.floor(Math.random() * colors.length)],
+                transparent: true,
+                opacity: 0.15,
+                wireframe: Math.random() > 0.6
+            });
+
+            const mesh = new THREE.Mesh(geos[Math.floor(Math.random() * geos.length)], material);
+
+            // Random positions in 3D space
+            mesh.position.x = (Math.random() - 0.5) * 40;
+            mesh.position.y = (Math.random() - 0.5) * 40;
+            mesh.position.z = (Math.random() - 0.5) * 20 - 10; // Keep behind UI mostly
+
+            // Random initial rotation
+            mesh.rotation.x = Math.random() * Math.PI;
+            mesh.rotation.y = Math.random() * Math.PI;
+
+            // Save random rotation speed
+            mesh.userData = {
+                rx: (Math.random() - 0.5) * 0.02,
+                ry: (Math.random() - 0.5) * 0.02
+            };
+
+            const scale = Math.random() * 0.5 + 0.5;
+            mesh.scale.set(scale, scale, scale);
+
+            group.add(mesh);
+        }
+
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(1, 1, 2);
+        scene.add(directionalLight);
+
+        camera.position.z = 15;
+
+        // Interactive mouse tracking
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetX = 0;
+        let targetY = 0;
+
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX - window.innerWidth / 2);
+            mouseY = (event.clientY - window.innerHeight / 2);
+        });
+
+        // Animation Loop
+        const clock = new THREE.Clock();
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Smooth parallax target following
+            targetX = mouseX * 0.001;
+            targetY = mouseY * 0.001;
+
+            group.rotation.y += 0.05 * (targetX - group.rotation.y);
+            group.rotation.x += 0.05 * (targetY - group.rotation.x);
+
+            // Rotate individual objects
+            group.children.forEach(mesh => {
+                mesh.rotation.x += mesh.userData.rx;
+                mesh.rotation.y += mesh.userData.ry;
+            });
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // -------------------------
+        // Audio Logic
+        // -------------------------
+        const sndCorrect = document.getElementById('snd-correct');
+        const sndWrong = document.getElementById('snd-wrong');
+        const sndCheer = document.getElementById('snd-cheer');
+        sndCorrect.volume = 0.5;
+        sndWrong.volume = 0.5;
+        sndCheer.volume = 0.4;
+
+        // -------------------------
+        // Quiz Score Logic
+        // -------------------------
+        Reveal.on('slidechanged', event => {
+            const scoreDisplay = document.getElementById('score-display');
+            if (event.currentSlide.getAttribute('data-state') === 'quiz-mode') {
+                scoreDisplay.classList.add('active');
+            } else {
+                scoreDisplay.classList.remove('active');
+            }
+
+            if (event.currentSlide.getAttribute('data-state') === 'end-quiz') {
+                document.getElementById('final-score').innerText = globalScore;
+
+                let perfText = "";
+                if (globalScore >= 300) { perfText = "Perfect! You're ready to build software!"; sndCheer.currentTime = 0; sndCheer.play().catch(e => console.log(e)); }
+                else if (globalScore > 0) { perfText = "Good job! Just a few things to review."; }
+                else { perfText = "Keep studying! You will get it next time."; }
+                document.getElementById('grade-text').innerText = perfText;
+
+                if (globalScore > 0) {
+                    var duration = 2.5 * 1000;
+                    var animationEnd = Date.now() + duration;
+                    var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+                    function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+                    var interval = setInterval(function () {
+                        var timeLeft = animationEnd - Date.now();
+                        if (timeLeft <= 0) { return clearInterval(interval); }
+                        var particleCount = 50 * (timeLeft / duration);
+                        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+                    }, 250);
+                }
+            }
+        });
+
+        let globalScore = 0;
+        let answeredCards = new Set();
+
+        window.handleQuiz = function (event, btn, cardId, isCorrect) {
+
+            // Stop event bubbling so left click on button doesn't trigger slide advance
+            event.stopPropagation();
+
+            if (answeredCards.has(cardId)) return;
+            answeredCards.add(cardId);
+
+            const card = document.getElementById(cardId);
+            const numId = cardId.split('-')[1];
+            const backFace = document.getElementById('back-' + numId);
+            const iconEl = document.getElementById('icon-' + numId);
+            const titleEl = document.getElementById('title-' + numId);
+            const parent = btn.parentElement;
+
+
+            Array.from(parent.children).forEach(b => {
+                b.style.pointerEvents = 'none';
+                b.classList.add('opacity-50');
+            });
+
+            btn.classList.remove('opacity-50');
+            btn.classList.add('opacity-100');
+
+            if (isCorrect) {
+                btn.classList.add('correct-btn');
+
+                backFace.classList.add('correct-face');
+                iconEl.className = "fa-solid fa-check-circle text-5xl mb-3 text-green-500";
+                titleEl.innerText = "Correct! (+100)";
+                titleEl.className = "text-green-600 mb-2 text-2xl font-black";
+
+                sndCorrect.currentTime = 0;
+                sndCorrect.play().catch(e => console.log("Audio limited"));
+
+                globalScore += 100;
+
+                var rect = btn.getBoundingClientRect();
+                confetti({
+                    particleCount: 150, spread: 80, zIndex: 100,
+                    colors: ['#22c55e', '#3b82f6', '#ffffff'],
+                    origin: { x: (rect.left + rect.width / 2) / window.innerWidth, y: (rect.top + rect.height / 2) / window.innerHeight }
+                });
+
+            } else {
+                btn.classList.add('wrong-btn');
+
+                backFace.classList.add('wrong-face');
+                iconEl.className = "fa-solid fa-xmark-circle text-5xl mb-3 text-red-500 animate-pulse";
+                titleEl.innerText = "Wrong! (-20)";
+                titleEl.className = "text-red-600 mb-2 text-2xl font-black";
+
+                sndWrong.currentTime = 0;
+                sndWrong.play().catch(e => console.log("Audio limited"));
+
+                Array.from(parent.children).forEach(b => {
+                    if (b.getAttribute('onclick').includes(', true)')) {
+                        b.classList.add('correct-btn');
+                        b.classList.remove('opacity-50');
+                    }
+                });
+
+                globalScore = globalScore - 20;
+            }
+
+            updateScoreDisplay();
+
+            // Flip after click
+            setTimeout(() => { card.classList.add('flipped'); }, 1000);
+        }
+
+        function updateScoreDisplay() {
+            const el = document.getElementById('score-val');
+            el.style.transform = 'scale(1.8)';
+            el.innerText = globalScore;
+            setTimeout(() => { el.style.transform = 'scale(1)'; }, 400);
+        }
+
+        // Fetch Live QR Code from local Node.js server
+        fetch('http://localhost:3000/qrcode')
+            .then(res => res.text())
+            .then(html => {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = html;
+                const img = tempDiv.firstChild;
+                img.className = "w-full h-full object-contain cursor-pointer transition transform hover:scale-105";
+
+                const placeholder = document.getElementById('qr-placeholder');
+                placeholder.innerHTML = ""; // Clear existing placeholder
+                placeholder.appendChild(img);
+
+                // Add click event to advance slide instantly
+                img.onclick = () => Reveal.next();
+
+                // Inject the host dashboard slide
+                const hostSlide = document.createElement('section');
+                hostSlide.setAttribute('data-background-color', '#1e293b');
+                // Force section to fill exactly 100% of Reveal's 960x700 scaled viewport
+                hostSlide.style.width = '100%';
+                hostSlide.style.height = '100%';
+                hostSlide.style.padding = '0';
+
+                hostSlide.innerHTML = `
+                    <div style="display:flex; flex-direction:column; width:100%; height:100%;">
+                        <div class="p-3 flex justify-between items-center bg-slate-800 text-white shadow-md relative z-10 w-full border-b border-slate-700">
+                            <div class="text-xl font-bold ml-4"><i class="fa-solid fa-chalkboard-user mr-2 text-blue-400"></i> Live Host Dashboard</div>
+                            <button onclick="Reveal.prev()" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-bold transition shadow mr-4 hover:scale-105">
+                                <i class="fa-solid fa-xmark mr-2"></i> Return to Presentation Slide
+                            </button>
+                        </div>
+                        <iframe id="host-iframe" src="http://localhost:3000/host.html" class="w-full border-none bg-slate-900" style="flex-grow: 1;"></iframe>
+                    </div>
+                `;
+                document.querySelector('.slides').appendChild(hostSlide);
+                Reveal.sync(); // Force Reveal.js to recognize the newly appended slide!
+            })
+            .catch(e => {
+                const placeholder = document.getElementById('qr-placeholder');
+                placeholder.innerHTML = `
+                    <div class="text-center p-4">
+                        <i class="fa-solid fa-triangle-exclamation text-5xl text-red-500 mb-2"></i>
+                        <p class="text-xs font-bold text-red-700">Server Offline!</p>
+                        <p class="text-[10px] text-slate-500 mt-1">Run 'node server.js' to generate live QR code.</p>
+                    </div>
+                `;
+                console.log("Live Quiz server is not running on port 3000.");
+            });
+    </script>
+</body>
+
+</html>
