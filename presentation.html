@@ -1067,7 +1067,7 @@
         }
 
         // Fetch Live QR Code from local Node.js server
-        fetch('http://localhost:3000/qrcode')
+        fetch('/qrcode')
             .then(res => res.text())
             .then(html => {
                 const tempDiv = document.createElement('div');
@@ -1098,7 +1098,7 @@
                                 <i class="fa-solid fa-xmark mr-2"></i> Return to Presentation Slide
                             </button>
                         </div>
-                        <iframe id="host-iframe" src="http://localhost:3000/host.html" class="w-full border-none bg-slate-900" style="flex-grow: 1;"></iframe>
+                        <iframe id="host-iframe" src="/host.html" class="w-full border-none bg-slate-900" style="flex-grow: 1;"></iframe>
                     </div>
                 `;
                 document.querySelector('.slides').appendChild(hostSlide);
@@ -1110,7 +1110,7 @@
                     <div class="text-center p-4">
                         <i class="fa-solid fa-triangle-exclamation text-5xl text-red-500 mb-2"></i>
                         <p class="text-xs font-bold text-red-700">Server Offline!</p>
-                        <p class="text-[10px] text-slate-500 mt-1">Run 'node server.js' to generate live QR code.</p>
+                        <p class="text-[10px] text-slate-500 mt-1">Make sure the quiz server is running.</p>
                     </div>
                 `;
                 console.log("Live Quiz server is not running on port 3000.");

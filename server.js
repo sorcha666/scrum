@@ -21,6 +21,11 @@ app.use((req, res, next) => {
 // Serve the static files from current directory
 app.use(express.static(__dirname));
 
+// Redirect root to presentation deck
+app.get('/', (req, res) => {
+    res.redirect('/presentation.html');
+});
+
 // Quiz Data based on the presentation
 const quizQuestions = [
     {
