@@ -639,71 +639,71 @@
                 <h2 style="font-size:2rem;">The Kanban Board</h2>
                 <h3 class="text-lg text-slate-500 mb-4 font-normal">A real-time visual representation of all workflow stages.</h3>
 
-                <div class="grid grid-cols-[1fr_1.6fr] gap-5 items-start max-w-5xl mx-auto">
-                    <!-- Left: legend -->
-                    <div class="flex flex-col gap-3">
-                        <div class="glass-panel p-4" style="margin-bottom:0; border-left: 4px solid #818cf8;">
-                            <p class="text-xs font-black text-indigo-600 uppercase tracking-widest mb-2">Key Components</p>
-                            <div class="flex items-center gap-3 mb-2">
-                                <div class="w-8 h-6 bg-purple-200 rounded border border-purple-400 flex-shrink-0"></div>
-                                <p class="text-xs text-slate-700 m-0"><strong>Cards</strong> — individual tasks</p>
-                            </div>
-                            <div class="flex items-center gap-3 mb-2">
-                                <div class="w-8 h-6 bg-slate-200 rounded border border-slate-400 flex-shrink-0"></div>
-                                <p class="text-xs text-slate-700 m-0"><strong>Columns</strong> — workflow stages</p>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-8 h-6 bg-red-200 rounded border border-red-400 flex-shrink-0 flex items-center justify-center text-red-700 font-black text-xs">2</div>
-                                <p class="text-xs text-slate-700 m-0"><strong>WIP Limits</strong> — max tasks per stage</p>
-                            </div>
+                <!-- Top info row: 3 equal panels -->
+                <div class="grid grid-cols-3 gap-3 mb-3 max-w-5xl mx-auto">
+                    <div class="glass-panel p-3" style="margin-bottom:0; border-left: 4px solid #818cf8;">
+                        <p class="text-xs font-black text-indigo-600 uppercase tracking-widest mb-2">Key Components</p>
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-7 h-5 bg-purple-200 rounded border border-purple-400 flex-shrink-0"></div>
+                            <p class="text-xs text-slate-700 m-0"><strong>Cards</strong> — individual tasks</p>
                         </div>
-                        <div class="glass-panel p-4" style="margin-bottom:0; border-left: 4px solid #a78bfa;">
-                            <p class="text-xs font-black text-purple-600 uppercase tracking-widest mb-2">Purpose</p>
-                            <ul class="text-xs text-slate-600 space-y-1 m-0 list-none p-0">
-                                <li><i class="fa-solid fa-magnifying-glass text-purple-400 mr-1"></i> Identify bottlenecks instantly</li>
-                                <li><i class="fa-solid fa-list-check text-purple-400 mr-1"></i> Improve task tracking</li>
-                                <li><i class="fa-solid fa-users text-purple-400 mr-1"></i> Increase team transparency</li>
-                            </ul>
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-7 h-5 bg-slate-200 rounded border border-slate-400 flex-shrink-0"></div>
+                            <p class="text-xs text-slate-700 m-0"><strong>Columns</strong> — workflow stages</p>
                         </div>
-                        <div class="glass-panel p-3 bg-purple-50 border-purple-200 text-center" style="margin-bottom:0;">
-                            <p class="text-xs text-slate-600 m-0"><i class="fa-solid fa-toolbox text-purple-500 mr-1"></i>Implemented with <strong>Jira</strong>, <strong>Trello</strong>, or physical boards</p>
+                        <div class="flex items-center gap-2">
+                            <div class="w-7 h-5 bg-red-200 rounded border border-red-400 flex-shrink-0 flex items-center justify-center text-red-700 font-black text-xs">2</div>
+                            <p class="text-xs text-slate-700 m-0"><strong>WIP Limits</strong> — max tasks per stage</p>
                         </div>
                     </div>
+                    <div class="glass-panel p-3" style="margin-bottom:0; border-left: 4px solid #a78bfa;">
+                        <p class="text-xs font-black text-purple-600 uppercase tracking-widest mb-2">Purpose</p>
+                        <ul class="text-xs text-slate-600 space-y-1 m-0 list-none p-0">
+                            <li><i class="fa-solid fa-magnifying-glass text-purple-400 mr-1"></i> Identify bottlenecks instantly</li>
+                            <li><i class="fa-solid fa-list-check text-purple-400 mr-1"></i> Improve task tracking</li>
+                            <li><i class="fa-solid fa-users text-purple-400 mr-1"></i> Increase team transparency</li>
+                        </ul>
+                    </div>
+                    <div class="glass-panel p-3 bg-purple-50 border-purple-200 flex flex-col justify-center items-center text-center" style="margin-bottom:0;">
+                        <i class="fa-solid fa-toolbox text-purple-500 text-xl mb-2"></i>
+                        <p class="text-xs font-black text-purple-600 uppercase tracking-widest mb-1">Tools</p>
+                        <p class="text-xs text-slate-600 m-0">Implemented with <strong>Jira</strong>, <strong>Trello</strong>, or physical boards</p>
+                    </div>
+                </div>
 
-                    <!-- Right: Kanban board -->
-                    <div class="glass-panel bg-slate-50 border-purple-200 p-4 shadow-xl" style="margin-bottom:0;">
-                        <div class="flex items-center gap-2 mb-3">
-                            <i class="fa-solid fa-list-check text-purple-500"></i>
-                            <p class="text-sm font-bold text-slate-700 m-0">Engineering Team Board</p>
+                <!-- Full-width Kanban board -->
+                <div class="glass-panel bg-slate-50 border-purple-200 p-4 max-w-5xl mx-auto" style="margin-bottom:0;">
+                    <div class="flex items-center gap-2 mb-3">
+                        <i class="fa-solid fa-list-check text-purple-500"></i>
+                        <p class="text-sm font-bold text-slate-700 m-0">Engineering Team Board</p>
+                    </div>
+                    <div class="grid grid-cols-4 gap-3 text-left">
+                        <!-- To Do -->
+                        <div class="border border-slate-200 rounded-lg bg-white p-3 flex flex-col">
+                            <div class="text-xs text-slate-500 font-bold mb-2 border-b pb-1 uppercase">To Do</div>
+                            <div class="bg-purple-50 border-l-4 border-purple-400 rounded px-2 py-2 mb-2 text-xs font-semibold text-purple-800 shadow-sm">Task A<br><span class="font-normal text-purple-500">Auth System</span></div>
+                            <div class="bg-purple-50 border-l-4 border-purple-400 rounded px-2 py-2 text-xs font-semibold text-purple-800 shadow-sm">Task B<br><span class="font-normal text-purple-500">Database</span></div>
                         </div>
-                        <div class="grid grid-cols-4 gap-2 text-left" style="min-height:230px;">
-                            <!-- To Do -->
-                            <div class="border border-slate-200 rounded-lg bg-white p-3 flex flex-col">
-                                <div class="text-xs text-slate-500 font-bold mb-2 border-b pb-1 uppercase">To Do</div>
-                                <div class="bg-purple-50 border-l-4 border-purple-400 rounded px-2 py-2 mb-2 text-xs font-semibold text-purple-800 shadow-sm">Task A<br><span class="font-normal text-purple-500">Auth System</span></div>
-                                <div class="bg-purple-50 border-l-4 border-purple-400 rounded px-2 py-2 text-xs font-semibold text-purple-800 shadow-sm">Task B<br><span class="font-normal text-purple-500">Database</span></div>
+                        <!-- In Progress -->
+                        <div class="border-2 border-red-400 rounded-lg bg-red-50 p-3 flex flex-col">
+                            <div class="text-xs text-red-700 font-bold mb-1 border-b border-red-200 pb-1 flex justify-between">
+                                <span class="uppercase">In Progress</span>
+                                <span class="bg-red-600 text-white px-1 rounded text-xs">Max 2</span>
                             </div>
-                            <!-- In Progress -->
-                            <div class="border-2 border-red-400 rounded-lg bg-red-50 p-3 flex flex-col relative">
-                                <div class="text-xs text-red-700 font-bold mb-1 border-b border-red-200 pb-1 flex justify-between">
-                                    <span class="uppercase">In Progress</span>
-                                    <span class="bg-red-600 text-white px-1 rounded text-xs">Max 2</span>
-                                </div>
-                                <div class="bg-white border-l-4 border-red-500 rounded px-2 py-2 mb-2 text-xs font-bold text-slate-700 shadow hover:scale-105 transition-transform">Task C<br><span class="font-normal text-slate-500">API Route</span></div>
-                                <div class="bg-white border-l-4 border-red-500 rounded px-2 py-2 text-xs font-bold text-slate-700 shadow hover:scale-105 transition-transform">Task D<br><span class="font-normal text-slate-500">UI Graphics</span></div>
-                                <div class="mt-2 bg-red-700 text-white text-xs font-bold px-2 py-1 rounded-full text-center animate-pulse">⛔ Full</div>
-                            </div>
-                            <!-- Testing -->
-                            <div class="border border-amber-300 rounded-lg bg-amber-50 p-3 flex flex-col">
-                                <div class="text-xs text-amber-700 font-bold mb-2 border-b border-amber-200 pb-1 uppercase">Testing</div>
-                                <div class="bg-amber-100 border-l-4 border-amber-500 rounded px-2 py-2 text-xs font-semibold text-amber-800 shadow-sm">Task E<br><span class="font-normal text-amber-600">Login flow</span></div>
-                            </div>
-                            <!-- Done -->
-                            <div class="border border-emerald-200 rounded-lg bg-emerald-50 p-3 flex flex-col">
-                                <div class="text-xs text-emerald-700 font-bold mb-2 border-b border-emerald-200 pb-1 uppercase">Done</div>
-                                <div class="bg-emerald-100 border-l-4 border-emerald-500 rounded px-2 py-2 mb-2 text-xs text-emerald-700 line-through opacity-60 shadow-sm">Setup Repo</div>
-                                <div class="bg-emerald-100 border-l-4 border-emerald-500 rounded px-2 py-2 text-xs text-emerald-700 line-through opacity-60 shadow-sm">CI Pipeline</div>
-                            </div>
+                            <div class="bg-white border-l-4 border-red-500 rounded px-2 py-2 mb-2 text-xs font-bold text-slate-700 shadow">Task C<br><span class="font-normal text-slate-500">API Route</span></div>
+                            <div class="bg-white border-l-4 border-red-500 rounded px-2 py-2 mb-2 text-xs font-bold text-slate-700 shadow">Task D<br><span class="font-normal text-slate-500">UI Graphics</span></div>
+                            <div class="mt-1 bg-red-700 text-white text-xs font-bold px-2 py-1 rounded-full text-center animate-pulse">⛔ Full</div>
+                        </div>
+                        <!-- Testing -->
+                        <div class="border border-amber-300 rounded-lg bg-amber-50 p-3 flex flex-col">
+                            <div class="text-xs text-amber-700 font-bold mb-2 border-b border-amber-200 pb-1 uppercase">Testing</div>
+                            <div class="bg-amber-100 border-l-4 border-amber-500 rounded px-2 py-2 text-xs font-semibold text-amber-800 shadow-sm">Task E<br><span class="font-normal text-amber-600">Login flow</span></div>
+                        </div>
+                        <!-- Done -->
+                        <div class="border border-emerald-200 rounded-lg bg-emerald-50 p-3 flex flex-col">
+                            <div class="text-xs text-emerald-700 font-bold mb-2 border-b border-emerald-200 pb-1 uppercase">Done</div>
+                            <div class="bg-emerald-100 border-l-4 border-emerald-500 rounded px-2 py-2 mb-2 text-xs text-emerald-700 line-through opacity-60 shadow-sm">Setup Repo</div>
+                            <div class="bg-emerald-100 border-l-4 border-emerald-500 rounded px-2 py-2 text-xs text-emerald-700 line-through opacity-60 shadow-sm">CI Pipeline</div>
                         </div>
                     </div>
                 </div>
