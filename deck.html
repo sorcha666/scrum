@@ -53,14 +53,34 @@
         }
 
         .reveal .slides section {
-            padding: 3rem !important;
-            background: rgba(255, 255, 255, 0.85);
+            padding: 2rem 2.2rem !important;
+            background: #ffffff;
             border-radius: 20px;
-            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.12);
+            border: 1px solid #e2e8f0;
             margin: auto;
             transform-origin: center center;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            overflow: hidden;
+        }
+
+        /* Slide number badge — bottom right inside each slide */
+        .reveal .slide-number {
+            background: #f1f5f9 !important;
+            color: #64748b !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 50px !important;
+            font-size: 0.7rem !important;
+            font-weight: 700 !important;
+            font-family: 'Inter', monospace !important;
+            padding: 4px 12px !important;
+            bottom: 14px !important;
+            right: 18px !important;
+            top: auto !important;
+            left: auto !important;
+            box-shadow: none !important;
         }
 
         .reveal .slides section::-webkit-scrollbar { display: none; }
@@ -80,12 +100,12 @@
         .reveal p, .reveal li { font-size: 0.95rem; color: #334155; line-height: 1.4; }
 
         .glass-panel {
-            background: rgba(255, 255, 255, 0.9);
+            background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
             padding: 1rem;
             transition: all 0.3s;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.06);
             margin-bottom: 0.8rem;
         }
 
@@ -311,10 +331,10 @@
                     </div>
                 </div>
 
-                <div class="glass-panel mt-4 bg-slate-800 p-4 max-w-4xl mx-auto text-center" style="margin-bottom:0;">
-                    <p class="text-sm text-slate-200 m-0">
-                        <i class="fa-solid fa-laptop-code text-orange-400 mr-2"></i>
-                        <strong class="text-orange-300">Engineering Perspective:</strong> XP turns good habits into <strong class="text-white">mandatory, measurable rules</strong> that engineers follow on every line of code.
+                <div class="glass-panel mt-4 p-4 max-w-4xl mx-auto text-center" style="margin-bottom:0; border-left: 4px solid #ea580c; background: #fff7ed;">
+                    <p class="text-sm text-slate-700 m-0">
+                        <i class="fa-solid fa-laptop-code text-orange-500 mr-2"></i>
+                        <strong class="text-orange-600">Engineering Perspective:</strong> XP turns good habits into <strong class="text-slate-800">mandatory, measurable rules</strong> that engineers follow on every line of code.
                     </p>
                 </div>
                 <aside class="notes">TDD keeps bugs out. Pair Programming ensures two brains are always on the problem. CI means we don't have a giant broken mess at the end of the week.</aside>
@@ -413,10 +433,10 @@
                     </div>
                 </div>
 
-                <div class="glass-panel mt-5 bg-slate-800 p-4 max-w-3xl mx-auto text-center" style="margin-bottom:0;">
-                    <p class="text-sm text-slate-200 m-0">
-                        <i class="fa-solid fa-lightbulb text-amber-400 mr-2"></i>
-                        <strong class="text-amber-300">Example of continuous improvement:</strong> <span class="text-white font-bold">Kaizen</span> — small, daily improvements made by every team member.
+                <div class="glass-panel mt-4 p-4 max-w-3xl mx-auto text-center" style="margin-bottom:0; border-left: 4px solid #16a34a; background: #f0fdf4;">
+                    <p class="text-sm text-slate-700 m-0">
+                        <i class="fa-solid fa-lightbulb text-amber-500 mr-2"></i>
+                        <strong class="text-green-700">Example of continuous improvement:</strong> <span class="text-slate-800 font-bold">Kaizen</span> — small, daily improvements made by every team member.
                     </p>
                 </div>
                 <aside class="notes">Lean is built on five principles: define value, map the stream, create flow, pull on demand, and seek perfection through continuous improvement — known as Kaizen.</aside>
@@ -461,10 +481,10 @@
                     </div>
                 </div>
 
-                <div class="glass-panel bg-slate-800 p-4 max-w-2xl mx-auto text-center" style="margin-bottom:0;">
-                    <p class="text-sm text-slate-200 m-0">
-                        <i class="fa-solid fa-triangle-exclamation text-red-400 mr-2"></i>
-                        These seven wastes are collectively called <strong class="text-red-400 text-base">Muda</strong> — and Lean's mission is to eliminate them all.
+                <div class="glass-panel p-4 max-w-2xl mx-auto text-center" style="margin-bottom:0; border-left: 4px solid #ef4444; background: #fef2f2;">
+                    <p class="text-sm text-slate-700 m-0">
+                        <i class="fa-solid fa-triangle-exclamation text-red-500 mr-2"></i>
+                        These seven wastes are collectively called <strong class="text-red-600">Muda</strong> — and Lean's mission is to eliminate them all.
                     </p>
                 </div>
                 <aside class="notes">Lean identifies 7 types of waste called Muda. Every activity that doesn't add value for the customer is waste and must be eliminated.</aside>
@@ -602,10 +622,10 @@
                     </div>
                 </div>
 
-                <div class="glass-panel bg-slate-800 p-4 max-w-3xl mx-auto text-center" style="margin-bottom:0;">
-                    <p class="text-sm text-slate-200 m-0">
-                        <i class="fa-solid fa-microchip text-purple-400 mr-2"></i>
-                        <strong class="text-purple-300">Engineering Perspective:</strong> Kanban treats work as a flowing system — similar to <strong class="text-white">process optimization in industrial engineering</strong>.
+                <div class="glass-panel p-4 max-w-3xl mx-auto text-center" style="margin-bottom:0; border-left: 4px solid #9333ea; background: #faf5ff;">
+                    <p class="text-sm text-slate-700 m-0">
+                        <i class="fa-solid fa-microchip text-purple-500 mr-2"></i>
+                        <strong class="text-purple-700">Engineering Perspective:</strong> Kanban treats work as a flowing system — similar to <strong class="text-slate-800">process optimization in industrial engineering</strong>.
                     </p>
                 </div>
                 <aside class="notes">The four principles are Visualize Work, Limit WIP, Manage Flow, and Continuous Improvement. Engineers will recognize this as a classic systems optimization challenge.</aside>
@@ -781,10 +801,10 @@
                     </div>
                 </div>
 
-                <div class="glass-panel bg-slate-900 p-4 max-w-3xl mx-auto text-center" style="margin-bottom:0;">
-                    <p class="text-white text-sm font-semibold m-0 leading-relaxed">
-                        <i class="fa-solid fa-circle-dot text-blue-400 mr-2"></i>
-                        Agile is not a process — it is a <strong class="text-blue-300">mindset</strong>. XP, Lean, and Kanban are the engineering tools that make it real.
+                <div class="glass-panel p-4 max-w-3xl mx-auto text-center" style="margin-bottom:0; border-left: 4px solid #3b82f6; background: #eff6ff;">
+                    <p class="text-slate-700 text-sm font-semibold m-0 leading-relaxed">
+                        <i class="fa-solid fa-circle-dot text-blue-500 mr-2"></i>
+                        Agile is not a process — it is a <strong class="text-blue-600">mindset</strong>. XP, Lean, and Kanban are the engineering tools that make it real.
                     </p>
                 </div>
                 <aside class="notes">To conclude — XP helps write reliable code. Lean eliminates waste. Kanban keeps the team flowing. Together, they form the foundation of modern Agile engineering.</aside>
@@ -833,11 +853,11 @@
             plugins: [RevealHighlight, RevealNotes],
             width: 1200,
             height: 800,
-            margin: 0.08,
+            margin: 0.06,
             minScale: 0.1,
-            maxScale: 1.2,
+            maxScale: 1.5,
             disableLayout: false,
-            slideNumber: 'c/t',
+            slideNumber: true,
             keyboard: true,
             controls: false,
             center: true
