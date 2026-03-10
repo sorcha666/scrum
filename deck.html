@@ -308,7 +308,7 @@
                             <i class="fa-solid fa-vial-circle-check text-2xl text-orange-600"></i>
                         </div>
                         <p class="text-xs font-black text-orange-600 uppercase tracking-widest mb-1">01</p>
-                        <h4 class="text-sm font-bold mb-2 text-slate-800">Test-Driven Development (TDD)</h4>
+                        <h4 class="text-sm font-bold mb-2 text-slate-800">Test-Driven Development</h4>
                         <p class="text-xs text-slate-600 leading-relaxed m-0">The test comes before the code. You define the target before you shoot. No ambiguity, no assumptions.</p>
                     </div>
 
@@ -601,7 +601,7 @@
                             <i class="fa-solid fa-hand text-2xl text-purple-700"></i>
                         </div>
                         <p class="text-xs font-black text-purple-700 uppercase tracking-wide mb-1">02</p>
-                        <p class="text-sm font-bold text-slate-800 mb-2">Limit WIP</p>
+                        <p class="text-sm font-bold text-slate-800 ">Limit WIP</p>
                         <p class="text-xs text-slate-500 m-0">Engineers focus on a limited number of tasks at a time to maximize throughput.</p>
                     </div>
                     <div class="glass-panel flex flex-col items-center text-center p-5" style="border-top:4px solid #9333ea; margin-bottom:0;">
@@ -633,77 +633,75 @@
 
             <!-- Kanban Slide 3: The Board -->
             <section data-transition="slide">
-                <div class="flex items-center gap-3 mb-2">
+                <div class="flex items-center gap-3 mb-1">
                     <div class="bg-purple-600 text-white px-4 py-1 rounded-full text-sm font-bold tracking-widest uppercase">3. Kanban</div>
                 </div>
-                <h2 style="font-size:2rem;">The Kanban Board</h2>
-                <h3 class="text-lg text-slate-500 mb-4 font-normal">A real-time visual representation of all workflow stages.</h3>
+                <h2 style="font-size:1.6rem; margin-bottom:0.2rem;">The Kanban Board</h2>
+                <h3 style="font-size:0.85rem; margin-bottom:0.6rem;" class="text-slate-500 font-normal">A real-time visual representation of all workflow stages.</h3>
 
                 <!-- Top info row: 3 equal panels -->
-                <div class="grid grid-cols-3 gap-3 mb-3 max-w-5xl mx-auto">
-                    <div class="glass-panel p-3" style="margin-bottom:0; border-left: 4px solid #818cf8;">
-                        <p class="text-xs font-black text-indigo-600 uppercase tracking-widest mb-2">Key Components</p>
-                        <div class="flex items-center gap-2 mb-2">
-                            <div class="w-7 h-5 bg-purple-200 rounded border border-purple-400 flex-shrink-0"></div>
-                            <p class="text-xs text-slate-700 m-0"><strong>Cards</strong> — individual tasks</p>
+                <div class="grid grid-cols-3 gap-2 mb-2" style="max-width:100%;">
+                    <div style="border-left:4px solid #818cf8; background:#fff; border:1px solid #e2e8f0; border-left:4px solid #818cf8; border-radius:10px; padding:0.5rem 0.75rem;">
+                        <p style="font-size:0.6rem; font-weight:900; color:#4f46e5; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.4rem;">Key Components</p>
+                        <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:0.3rem;">
+                            <div style="width:1.4rem;height:1rem;background:#e9d5ff;border:1px solid #a855f7;border-radius:3px;flex-shrink:0;"></div>
+                            <p style="font-size:0.65rem;color:#334155;margin:0;"><strong>Cards</strong> — individual tasks</p>
                         </div>
-                        <div class="flex items-center gap-2 mb-2">
-                            <div class="w-7 h-5 bg-slate-200 rounded border border-slate-400 flex-shrink-0"></div>
-                            <p class="text-xs text-slate-700 m-0"><strong>Columns</strong> — workflow stages</p>
+                        <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:0.3rem;">
+                            <div style="width:1.4rem;height:1rem;background:#e2e8f0;border:1px solid #94a3b8;border-radius:3px;flex-shrink:0;"></div>
+                            <p style="font-size:0.65rem;color:#334155;margin:0;"><strong>Columns</strong> — workflow stages</p>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <div class="w-7 h-5 bg-red-200 rounded border border-red-400 flex-shrink-0 flex items-center justify-center text-red-700 font-black text-xs">2</div>
-                            <p class="text-xs text-slate-700 m-0"><strong>WIP Limits</strong> — max tasks per stage</p>
+                        <div style="display:flex;align-items:center;gap:0.4rem;">
+                            <div style="width:1.4rem;height:1rem;background:#fecaca;border:1px solid #f87171;border-radius:3px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.55rem;font-weight:900;color:#b91c1c;">2</div>
+                            <p style="font-size:0.65rem;color:#334155;margin:0;"><strong>WIP Limits</strong> — max per stage</p>
                         </div>
                     </div>
-                    <div class="glass-panel p-3" style="margin-bottom:0; border-left: 4px solid #a78bfa;">
-                        <p class="text-xs font-black text-purple-600 uppercase tracking-widest mb-2">Purpose</p>
-                        <ul class="text-xs text-slate-600 space-y-1 m-0 list-none p-0">
-                            <li><i class="fa-solid fa-magnifying-glass text-purple-400 mr-1"></i> Identify bottlenecks instantly</li>
-                            <li><i class="fa-solid fa-list-check text-purple-400 mr-1"></i> Improve task tracking</li>
-                            <li><i class="fa-solid fa-users text-purple-400 mr-1"></i> Increase team transparency</li>
-                        </ul>
+                    <div style="border-left:4px solid #a78bfa; background:#fff; border:1px solid #e2e8f0; border-left:4px solid #a78bfa; border-radius:10px; padding:0.5rem 0.75rem;">
+                        <p style="font-size:0.6rem; font-weight:900; color:#7c3aed; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.4rem;">Purpose</p>
+                        <p style="font-size:0.65rem;color:#475569;margin-bottom:0.25rem;"><i class="fa-solid fa-magnifying-glass" style="color:#a78bfa;margin-right:0.3rem;"></i>Identify bottlenecks instantly</p>
+                        <p style="font-size:0.65rem;color:#475569;margin-bottom:0.25rem;"><i class="fa-solid fa-list-check" style="color:#a78bfa;margin-right:0.3rem;"></i>Improve task tracking</p>
+                        <p style="font-size:0.65rem;color:#475569;margin:0;"><i class="fa-solid fa-users" style="color:#a78bfa;margin-right:0.3rem;"></i>Increase team transparency</p>
                     </div>
-                    <div class="glass-panel p-3 bg-purple-50 border-purple-200 flex flex-col justify-center items-center text-center" style="margin-bottom:0;">
-                        <i class="fa-solid fa-toolbox text-purple-500 text-xl mb-2"></i>
-                        <p class="text-xs font-black text-purple-600 uppercase tracking-widest mb-1">Tools</p>
-                        <p class="text-xs text-slate-600 m-0">Implemented with <strong>Jira</strong>, <strong>Trello</strong>, or physical boards</p>
+                    <div style="background:#faf5ff; border:1px solid #d8b4fe; border-radius:10px; padding:0.5rem 0.75rem; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+                        <i class="fa-solid fa-toolbox" style="color:#9333ea;font-size:1.1rem;margin-bottom:0.3rem;"></i>
+                        <p style="font-size:0.6rem;font-weight:900;color:#7c3aed;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.25rem;">Tools</p>
+                        <p style="font-size:0.65rem;color:#475569;margin:0;">Implemented with <strong>Jira</strong>, <strong>Trello</strong>, or physical boards</p>
                     </div>
                 </div>
 
                 <!-- Full-width Kanban board -->
-                <div class="glass-panel bg-slate-50 border-purple-200 p-4 max-w-5xl mx-auto" style="margin-bottom:0;">
-                    <div class="flex items-center gap-2 mb-3">
-                        <i class="fa-solid fa-list-check text-purple-500"></i>
-                        <p class="text-sm font-bold text-slate-700 m-0">Engineering Team Board</p>
+                <div style="background:#f8fafc; border:1px solid #d8b4fe; border-radius:12px; padding:0.6rem 0.75rem;">
+                    <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:0.5rem;">
+                        <i class="fa-solid fa-list-check" style="color:#9333ea;font-size:0.85rem;"></i>
+                        <p style="font-size:0.75rem;font-weight:700;color:#1e293b;margin:0;">Engineering Team Board</p>
                     </div>
-                    <div class="grid grid-cols-4 gap-3 text-left">
+                    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;">
                         <!-- To Do -->
-                        <div class="border border-slate-200 rounded-lg bg-white p-3 flex flex-col">
-                            <div class="text-xs text-slate-500 font-bold mb-2 border-b pb-1 uppercase">To Do</div>
-                            <div class="bg-purple-50 border-l-4 border-purple-400 rounded px-2 py-2 mb-2 text-xs font-semibold text-purple-800 shadow-sm">Task A<br><span class="font-normal text-purple-500">Auth System</span></div>
-                            <div class="bg-purple-50 border-l-4 border-purple-400 rounded px-2 py-2 text-xs font-semibold text-purple-800 shadow-sm">Task B<br><span class="font-normal text-purple-500">Database</span></div>
+                        <div style="border:1px solid #e2e8f0;border-radius:8px;background:#fff;padding:0.5rem;">
+                            <p style="font-size:0.6rem;color:#64748b;font-weight:700;text-transform:uppercase;border-bottom:1px solid #f1f5f9;padding-bottom:0.25rem;margin-bottom:0.4rem;">To Do</p>
+                            <div style="background:#faf5ff;border-left:3px solid #a855f7;border-radius:4px;padding:0.3rem 0.4rem;margin-bottom:0.3rem;font-size:0.65rem;font-weight:600;color:#6b21a8;">Task A<br><span style="font-weight:400;color:#9333ea;">Auth System</span></div>
+                            <div style="background:#faf5ff;border-left:3px solid #a855f7;border-radius:4px;padding:0.3rem 0.4rem;font-size:0.65rem;font-weight:600;color:#6b21a8;">Task B<br><span style="font-weight:400;color:#9333ea;">Database</span></div>
                         </div>
                         <!-- In Progress -->
-                        <div class="border-2 border-red-400 rounded-lg bg-red-50 p-3 flex flex-col">
-                            <div class="text-xs text-red-700 font-bold mb-1 border-b border-red-200 pb-1 flex justify-between">
-                                <span class="uppercase">In Progress</span>
-                                <span class="bg-red-600 text-white px-1 rounded text-xs">Max 2</span>
+                        <div style="border:2px solid #f87171;border-radius:8px;background:#fef2f2;padding:0.5rem;">
+                            <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #fecaca;padding-bottom:0.25rem;margin-bottom:0.4rem;">
+                                <p style="font-size:0.6rem;color:#b91c1c;font-weight:700;text-transform:uppercase;margin:0;">In Progress</p>
+                                <span style="background:#dc2626;color:#fff;font-size:0.55rem;font-weight:700;padding:0.1rem 0.3rem;border-radius:4px;">Max 2</span>
                             </div>
-                            <div class="bg-white border-l-4 border-red-500 rounded px-2 py-2 mb-2 text-xs font-bold text-slate-700 shadow">Task C<br><span class="font-normal text-slate-500">API Route</span></div>
-                            <div class="bg-white border-l-4 border-red-500 rounded px-2 py-2 mb-2 text-xs font-bold text-slate-700 shadow">Task D<br><span class="font-normal text-slate-500">UI Graphics</span></div>
-                            <div class="mt-1 bg-red-700 text-white text-xs font-bold px-2 py-1 rounded-full text-center animate-pulse">⛔ Full</div>
+                            <div style="background:#fff;border-left:3px solid #ef4444;border-radius:4px;padding:0.3rem 0.4rem;margin-bottom:0.3rem;font-size:0.65rem;font-weight:700;color:#1e293b;">Task C<br><span style="font-weight:400;color:#64748b;">API Route</span></div>
+                            <div style="background:#fff;border-left:3px solid #ef4444;border-radius:4px;padding:0.3rem 0.4rem;margin-bottom:0.3rem;font-size:0.65rem;font-weight:700;color:#1e293b;">Task D<br><span style="font-weight:400;color:#64748b;">UI Graphics</span></div>
+                            <div style="background:#991b1b;color:#fff;font-size:0.6rem;font-weight:700;padding:0.2rem 0.4rem;border-radius:20px;text-align:center;" class="animate-pulse">⛔ Full</div>
                         </div>
                         <!-- Testing -->
-                        <div class="border border-amber-300 rounded-lg bg-amber-50 p-3 flex flex-col">
-                            <div class="text-xs text-amber-700 font-bold mb-2 border-b border-amber-200 pb-1 uppercase">Testing</div>
-                            <div class="bg-amber-100 border-l-4 border-amber-500 rounded px-2 py-2 text-xs font-semibold text-amber-800 shadow-sm">Task E<br><span class="font-normal text-amber-600">Login flow</span></div>
+                        <div style="border:1px solid #fcd34d;border-radius:8px;background:#fffbeb;padding:0.5rem;">
+                            <p style="font-size:0.6rem;color:#92400e;font-weight:700;text-transform:uppercase;border-bottom:1px solid #fde68a;padding-bottom:0.25rem;margin-bottom:0.4rem;">Testing</p>
+                            <div style="background:#fef3c7;border-left:3px solid #f59e0b;border-radius:4px;padding:0.3rem 0.4rem;font-size:0.65rem;font-weight:600;color:#78350f;">Task E<br><span style="font-weight:400;color:#b45309;">Login flow</span></div>
                         </div>
                         <!-- Done -->
-                        <div class="border border-emerald-200 rounded-lg bg-emerald-50 p-3 flex flex-col">
-                            <div class="text-xs text-emerald-700 font-bold mb-2 border-b border-emerald-200 pb-1 uppercase">Done</div>
-                            <div class="bg-emerald-100 border-l-4 border-emerald-500 rounded px-2 py-2 mb-2 text-xs text-emerald-700 line-through opacity-60 shadow-sm">Setup Repo</div>
-                            <div class="bg-emerald-100 border-l-4 border-emerald-500 rounded px-2 py-2 text-xs text-emerald-700 line-through opacity-60 shadow-sm">CI Pipeline</div>
+                        <div style="border:1px solid #a7f3d0;border-radius:8px;background:#f0fdf4;padding:0.5rem;">
+                            <p style="font-size:0.6rem;color:#065f46;font-weight:700;text-transform:uppercase;border-bottom:1px solid #a7f3d0;padding-bottom:0.25rem;margin-bottom:0.4rem;">Done</p>
+                            <div style="background:#d1fae5;border-left:3px solid #10b981;border-radius:4px;padding:0.3rem 0.4rem;margin-bottom:0.3rem;font-size:0.65rem;color:#065f46;text-decoration:line-through;opacity:0.6;">Setup Repo</div>
+                            <div style="background:#d1fae5;border-left:3px solid #10b981;border-radius:4px;padding:0.3rem 0.4rem;font-size:0.65rem;color:#065f46;text-decoration:line-through;opacity:0.6;">CI Pipeline</div>
                         </div>
                     </div>
                 </div>
