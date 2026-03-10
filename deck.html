@@ -308,7 +308,7 @@
                             <i class="fa-solid fa-vial-circle-check text-2xl text-orange-600"></i>
                         </div>
                         <p class="text-xs font-black text-orange-600 uppercase tracking-widest mb-1">01</p>
-                        <h4 class="text-sm font-bold mb-2 text-slate-800">Test-Driven Development</h4>
+                        <h4 class="text-sm font-bold mb-2 text-slate-800">Test-Driven Development (TDD)</h4>
                         <p class="text-xs text-slate-600 leading-relaxed m-0">The test comes before the code. You define the target before you shoot. No ambiguity, no assumptions.</p>
                     </div>
 
@@ -601,7 +601,7 @@
                             <i class="fa-solid fa-hand text-2xl text-purple-700"></i>
                         </div>
                         <p class="text-xs font-black text-purple-700 uppercase tracking-wide mb-1">02</p>
-                        <p class="text-sm font-bold text-slate-800 ">Limit WIP</p>
+                        <p class="text-sm font-bold text-slate-800 mb-2">Limit WIP</p>
                         <p class="text-xs text-slate-500 m-0">Engineers focus on a limited number of tasks at a time to maximize throughput.</p>
                     </div>
                     <div class="glass-panel flex flex-col items-center text-center p-5" style="border-top:4px solid #9333ea; margin-bottom:0;">
@@ -863,6 +863,8 @@
 
         document.addEventListener('mousedown', function (event) {
             if (event.target.tagName === 'BUTTON' || event.target.closest('button')) return;
+            // Dead zone: ignore clicks in bottom 60px (where slide number lives)
+            if (event.clientY > window.innerHeight - 60) return;
             if (event.button === 0) { Reveal.next(); }
             else if (event.button === 2) { Reveal.prev(); }
         });
