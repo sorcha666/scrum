@@ -122,6 +122,7 @@ let currentSlide = 0;
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 const counter = document.getElementById('slide-counter');
+const logoContainer = document.querySelector('.logo-container');
 
 // Initialize GSAP
 gsap.registerPlugin();
@@ -130,6 +131,13 @@ function updateCounter() {
     counter.textContent = `${String(currentSlide + 1).padStart(2, '0')} / ${totalSlides}`;
     prevBtn.disabled = currentSlide === 0;
     nextBtn.disabled = currentSlide === totalSlides - 1;
+    
+    // Show logo only on slide 1
+    if (currentSlide === 0) {
+        gsap.to(logoContainer, {opacity: 1, duration: 0.3, onStart: () => logoContainer.style.display = 'flex'});
+    } else {
+        gsap.to(logoContainer, {opacity: 0, duration: 0.3, onComplete: () => logoContainer.style.display = 'none'});
+    }
 }
 
 function animateSlideIn(index) {
