@@ -248,6 +248,19 @@ h1, h2, h3 {
 }
 .cols-3 { grid-template-columns: repeat(3, 1fr); }
 .cols-2 { grid-template-columns: repeat(2, 1fr); }
+.cols-1 { grid-template-columns: 1fr; }
+
+/* --- Split Layout --- */
+.split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: center;
+}
+.left-col, .right-col {
+    display: flex;
+    flex-direction: column;
+}
 
 .glass-card {
     background: var(--glass-bg);
