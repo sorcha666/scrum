@@ -134,7 +134,7 @@ header {
     align-items: center;
     opacity: 0;
     visibility: hidden;
-    padding: 100px 50px 50px; /* extra top padding for header */
+    padding: 50px;
 }
 
 .slide.active {

@@ -122,7 +122,7 @@ let currentSlide = 0;
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 const counter = document.getElementById('slide-counter');
-const logoContainer = document.querySelector('.logo-container');
+const headerNav = document.querySelector('header');
 
 // Initialize GSAP
 gsap.registerPlugin();
@@ -132,11 +132,11 @@ function updateCounter() {
     prevBtn.disabled = currentSlide === 0;
     nextBtn.disabled = currentSlide === totalSlides - 1;
     
-    // Show logo only on slide 1
+    // Show navbar only on slide 1
     if (currentSlide === 0) {
-        gsap.to(logoContainer, {opacity: 1, duration: 0.3, onStart: () => logoContainer.style.display = 'flex'});
+        gsap.to(headerNav, {opacity: 1, duration: 0.3, onStart: () => headerNav.style.display = 'flex'});
     } else {
-        gsap.to(logoContainer, {opacity: 0, duration: 0.3, onComplete: () => logoContainer.style.display = 'none'});
+        gsap.to(headerNav, {opacity: 0, duration: 0.3, onComplete: () => headerNav.style.display = 'none'});
     }
 }
 
