@@ -231,6 +231,29 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// Navigation by mouse clicks
+document.addEventListener('mousedown', (e) => {
+    // Check if we are clicking on an interactive element
+    const isInteractive = e.target.tagName === 'BUTTON' || 
+                          e.target.tagName === 'A' || 
+                          e.target.closest('.zoom-img') || 
+                          e.target.closest('.backlog-table-container') ||
+                          e.target.closest('.close-modal');
+    
+    if (isInteractive) return;
+
+    if (e.button === 0) { // Left click: Next
+        goToSlide(currentSlide + 1);
+    } else if (e.button === 2) { // Right click: Previous
+        goToSlide(currentSlide - 1);
+    }
+});
+
+// Disable context menu to allow right-click navigation
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+});
+
 // Init first slide
 updateCounter();
 setTimeout(() => animateSlideIn(currentSlide), 100);
