@@ -201,18 +201,23 @@ function animateSlideOut(index, direction) {
     });
 }
 
+let isTransitioning = false;
+
 function goToSlide(newIndex) {
-    if(newIndex < 0 || newIndex >= totalSlides || newIndex === currentSlide) return;
+    if(isTransitioning || newIndex < 0 || newIndex >= totalSlides || newIndex === currentSlide) return;
     
-    const direction = newIndex > currentSlide ? 'next' : 'prev';
-    animateSlideOut(currentSlide, direction);
+    const oldIndex = currentSlide;
+    currentSlide = newIndex; // Update immediately to prevent race conditions
+    isTransitioning = true;
     
-    // Small delay to let old slide fade out
+    const direction = newIndex > oldIndex ? 'next' : 'prev';
+    animateSlideOut(oldIndex, direction);
+    
     setTimeout(() => {
-        currentSlide = newIndex;
         updateCounter();
         animateSlideIn(currentSlide);
-    }, 400);
+        isTransitioning = false;
+    }, 450);
 }
 
 // Event Listeners
@@ -224,7 +229,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Navigation by mouse clicks
+// Navigation by mouse clicks (Capture phase to prevent interference)
 document.addEventListener('mousedown', (e) => {
     // Check if we are clicking on an interactive element
     const isInteractive = e.target.tagName === 'BUTTON' || 
@@ -236,16 +241,18 @@ document.addEventListener('mousedown', (e) => {
     if (isInteractive) return;
 
     if (e.button === 0) { // Left click: Next
+        e.preventDefault();
         goToSlide(currentSlide + 1);
     } else if (e.button === 2) { // Right click: Previous
+        e.preventDefault();
         goToSlide(currentSlide - 1);
     }
-});
+}, true);
 
 // Disable context menu to allow right-click navigation
 document.addEventListener('contextmenu', (e) => {
     e.preventDefault();
-});
+}, true);
 
 // Init first slide
 updateCounter();
