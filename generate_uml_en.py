@@ -81,26 +81,26 @@ def generate_sprint1():
     draw_inheritance(ax, lp, u, route_y=14.5, x_offset=0, route_x_offset=0.6)
     draw_inheritance(ax, h, u, route_y=15.2, x_offset=-0.4, route_x_offset=1.2)
     
-    labels = [
-        "US-01 Authenticate",
-        "US-02 Create Library",
-        "US-03 Hire Staff",
-        "US-05 Assign Manager",
-        "US-06 Unique Book IDs",
-        "US-08 Register Author",
-        "US-09 Register Publisher",
-        "US-11 Write Book Summary",
-        "US-12 Create Online Card",
-        "US-13 Provide Purchase Advice"
+    data = [
+        ("Authenticate", "US-01"),
+        ("Create Library", "US-02"),
+        ("Hire Staff", "US-03"),
+        ("Assign Manager", "US-05"),
+        ("Unique Book IDs", "US-06"),
+        ("Register Author", "US-08"),
+        ("Register Publisher", "US-09"),
+        ("Write Book Summary", "US-11"),
+        ("Create Online Card", "US-12"),
+        ("Provide Purchase Advice", "US-13")
     ]
-    ys = evenly_spaced(11.5, 1.0, len(labels))
-    ucs = [draw_usecase(ax, 8.7, y, lbl) for y, lbl in zip(ys, labels)]
+    ys = evenly_spaced(11.5, 1.0, len(data))
+    ucs = [draw_usecase(ax, 8.7, y, d[0]) for y, d in zip(ys, data)]
     
-    for lbl, uc in zip(labels, ucs):
-        if "US-01" in lbl: draw_association(ax, u, uc)
-        if "US-02" in lbl or "US-03" in lbl or "US-05" in lbl or "US-06" in lbl or "US-08" in lbl or "US-09" in lbl: draw_association(ax, sc, uc)
-        if "US-11" in lbl or "US-13" in lbl: draw_association(ax, lp, uc)
-        if "US-12" in lbl: draw_association(ax, h, uc)
+    for (lbl, us_id), uc in zip(data, ucs):
+        if us_id == "US-01": draw_association(ax, u, uc)
+        if us_id in ["US-02", "US-03", "US-05", "US-06", "US-08", "US-09"]: draw_association(ax, sc, uc)
+        if us_id in ["US-11", "US-13"]: draw_association(ax, lp, uc)
+        if us_id == "US-12": draw_association(ax, h, uc)
 
     plt.savefig(os.path.join(ASSETS_DIR, 'sprint1_usecase.png'), dpi=180, bbox_inches='tight')
     plt.close()
@@ -118,25 +118,25 @@ def generate_sprint2():
     sys = draw_actor(ax, 16, 6.0, 'System')
     lec = draw_actor(ax, 16, 10.0, 'Reader')
     
-    labels = [
-        "US-14 Authorize Book",
-        "US-20 Record Purchase",
-        "US-22 Purchase by Edition",
-        "US-23 Complete Stock",
-        "US-24 Auto-Numbering",
-        "US-25 Distribute Books",
-        "US-29 Apply 3-Book Limit",
-        "US-30 Late Return Fee",
-        "US-34 Check Availability"
+    data = [
+        ("Authorize Book", "US-14"),
+        ("Record Purchase", "US-20"),
+        ("Purchase by Edition", "US-22"),
+        ("Complete Stock", "US-23"),
+        ("Auto-Numbering", "US-24"),
+        ("Distribute Books", "US-25"),
+        ("Apply 3-Book Limit", "US-29"),
+        ("Late Return Fee", "US-30"),
+        ("Check Availability", "US-34")
     ]
-    ys = evenly_spaced(10.5, 0.8, len(labels))
-    ucs = [draw_usecase(ax, 8.7, y, lbl) for y, lbl in zip(ys, labels)]
+    ys = evenly_spaced(10.5, 0.8, len(data))
+    ucs = [draw_usecase(ax, 8.7, y, d[0]) for y, d in zip(ys, data)]
     
-    for lbl, uc in zip(labels, ucs):
-        if "US-14" in lbl or "US-20" in lbl or "US-22" in lbl or "US-23" in lbl or "US-24" in lbl or "US-25" in lbl: draw_association(ax, sc, uc)
-        if "US-29" in lbl: draw_association(ax, sys, uc)
-        if "US-30" in lbl: draw_association(ax, bib, uc)
-        if "US-34" in lbl: draw_association(ax, lec, uc)
+    for (lbl, us_id), uc in zip(data, ucs):
+        if us_id in ["US-14", "US-20", "US-22", "US-23", "US-24", "US-25"]: draw_association(ax, sc, uc)
+        if us_id == "US-29": draw_association(ax, sys, uc)
+        if us_id == "US-30": draw_association(ax, bib, uc)
+        if us_id == "US-34": draw_association(ax, lec, uc)
 
     plt.savefig(os.path.join(ASSETS_DIR, 'sprint2_usecase.png'), dpi=180, bbox_inches='tight')
     plt.close()
@@ -154,27 +154,27 @@ def generate_sprint3():
     lp = draw_actor(ax, 16, 9.0, 'Pro\nReader')
     lec = draw_actor(ax, 16, 4.0, 'Reader')
     
-    labels = [
-        "US-35 Online Reservation",
-        "US-36 Auto-Cancel (48h)",
-        "US-39 Create Transfer Slip",
-        "US-04 Add New Services",
-        "US-07 Register Pro Reader",
-        "US-10 Publisher Status",
-        "US-15 Assign Keywords",
-        "US-16 Link Author/Genre",
-        "US-18 Consult Editions",
-        "US-19 Consult Prices",
-        "US-21 Manage Defunct Publisher"
+    data = [
+        ("Online Reservation", "US-35"),
+        ("Auto-Cancel (48h)", "US-36"),
+        ("Create Transfer Slip", "US-39"),
+        ("Add New Services", "US-04"),
+        ("Register Pro Reader", "US-07"),
+        ("Publisher Status", "US-10"),
+        ("Assign Keywords", "US-15"),
+        ("Link Author/Genre", "US-16"),
+        ("Consult Editions", "US-18"),
+        ("Consult Prices", "US-19"),
+        ("Manage Defunct Publisher", "US-21")
     ]
-    ys = evenly_spaced(10.5, 0.8, len(labels))
-    ucs = [draw_usecase(ax, 8.7, y, lbl) for y, lbl in zip(ys, labels)]
+    ys = evenly_spaced(10.5, 0.8, len(data))
+    ucs = [draw_usecase(ax, 8.7, y, d[0]) for y, d in zip(ys, data)]
     
-    for lbl, uc in zip(labels, ucs):
-        if "US-35" in lbl: draw_association(ax, lec, uc)
-        if "US-36" in lbl or "US-04" in lbl or "US-07" in lbl or "US-10" in lbl or "US-16" in lbl or "US-18" in lbl or "US-19" in lbl: draw_association(ax, sc, uc)
-        if "US-39" in lbl or "US-21" in lbl: draw_association(ax, bib, uc)
-        if "US-15" in lbl: draw_association(ax, lp, uc)
+    for (lbl, us_id), uc in zip(data, ucs):
+        if us_id == "US-35": draw_association(ax, lec, uc)
+        if us_id in ["US-36", "US-04", "US-07", "US-10", "US-16", "US-18", "US-19"]: draw_association(ax, sc, uc)
+        if us_id in ["US-39", "US-21"]: draw_association(ax, bib, uc)
+        if us_id == "US-15": draw_association(ax, lp, uc)
 
     plt.savefig(os.path.join(ASSETS_DIR, 'sprint3_usecase.png'), dpi=180, bbox_inches='tight')
     plt.close()
@@ -192,25 +192,25 @@ def generate_sprint4():
     lp = draw_actor(ax, 16, 10.0, 'Pro\nReader')
     lec = draw_actor(ax, 16, 6.0, 'Reader')
     
-    labels = [
-        "US-26 Manage Condition",
-        "US-27 Renew Card",
-        "US-28 Log Child Loan",
-        "US-31 Repair Fees",
-        "US-32 Record Conflicts",
-        "US-33 Full Book History",
-        "US-37 Loan Statistics",
-        "US-38 Identify Stock Deficit",
-        "US-17 Genre Commentary"
+    data = [
+        ("Manage Condition", "US-26"),
+        ("Renew Card", "US-27"),
+        ("Log Child Loan", "US-28"),
+        ("Repair Fees", "US-31"),
+        ("Record Conflicts", "US-32"),
+        ("Full Book History", "US-33"),
+        ("Loan Statistics", "US-37"),
+        ("Identify Stock Deficit", "US-38"),
+        ("Genre Commentary", "US-17")
     ]
-    ys = evenly_spaced(10.5, 0.8, len(labels))
-    ucs = [draw_usecase(ax, 8.7, y, lbl) for y, lbl in zip(ys, labels)]
+    ys = evenly_spaced(10.5, 0.8, len(data))
+    ucs = [draw_usecase(ax, 8.7, y, d[0]) for y, d in zip(ys, data)]
     
-    for lbl, uc in zip(labels, ucs):
-        if "US-26" in lbl or "US-31" in lbl or "US-32" in lbl or "US-33" in lbl or "US-38" in lbl: draw_association(ax, bib, uc)
-        if "US-27" in lbl: draw_association(ax, lec, uc)
-        if "US-28" in lbl or "US-37" in lbl: draw_association(ax, sc, uc)
-        if "US-17" in lbl: draw_association(ax, lp, uc)
+    for (lbl, us_id), uc in zip(data, ucs):
+        if us_id in ["US-26", "US-31", "US-32", "US-33", "US-38"]: draw_association(ax, bib, uc)
+        if us_id == "US-27": draw_association(ax, lec, uc)
+        if us_id in ["US-28", "US-37"]: draw_association(ax, sc, uc)
+        if us_id == "US-17": draw_association(ax, lp, uc)
 
     plt.savefig(os.path.join(ASSETS_DIR, 'sprint4_usecase.png'), dpi=180, bbox_inches='tight')
     plt.close()
