@@ -278,3 +278,13 @@ modal.addEventListener('click', (e) => {
         closeBtn.click();
     }
 });
+
+// Global scroll for Product Backlog (Slide 11 / index 10)
+window.addEventListener('wheel', (e) => {
+    if (currentSlide === 10) { // Slide 11
+        const container = document.querySelector('.backlog-table-container');
+        if (container) {
+            container.scrollTop += e.deltaY;
+        }
+    }
+});
