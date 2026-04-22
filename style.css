@@ -78,40 +78,21 @@ header {
     letter-spacing: 1px;
 }
 
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.nav-btn {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    color: var(--text-light);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-}
-
-.nav-btn:hover:not(:disabled) {
-    background: var(--accent);
-    border-color: var(--accent);
-}
-
-.nav-btn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-}
-
-#slide-counter {
+.fixed-counter {
+    position: fixed;
+    bottom: 30px;
+    right: 40px;
+    z-index: 1000;
     font-family: var(--font-heading);
     font-weight: 600;
     color: var(--teal);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    background: var(--glass-bg);
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
 /* --- Main Presentation Area --- */

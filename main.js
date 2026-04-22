@@ -119,8 +119,6 @@ const slides = document.querySelectorAll('.slide');
 const totalSlides = slides.length;
 let currentSlide = 0;
 
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
 const counter = document.getElementById('slide-counter');
 const headerNav = document.querySelector('header');
 
@@ -129,8 +127,6 @@ gsap.registerPlugin();
 
 function updateCounter() {
     counter.textContent = `${String(currentSlide + 1).padStart(2, '0')} / ${totalSlides}`;
-    prevBtn.disabled = currentSlide === 0;
-    nextBtn.disabled = currentSlide === totalSlides - 1;
     
     // Show navbar only on slide 1
     if (currentSlide === 0) {
@@ -213,9 +209,6 @@ function goToSlide(newIndex) {
 }
 
 // Event Listeners
-nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
-prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
-
 document.addEventListener('keydown', (e) => {
     if(e.key === 'ArrowRight' || e.key === 'Space') {
         goToSlide(currentSlide + 1);
