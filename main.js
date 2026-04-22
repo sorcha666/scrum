@@ -158,14 +158,7 @@ function animateSlideIn(index) {
         );
     }
 
-    // Animate Workflow Video Wipe Effect
-    const workflowImg = slide.querySelector('.workflow-anim');
-    if (workflowImg) {
-        gsap.fromTo(workflowImg, 
-            { clipPath: 'inset(0 100% 0 0)' }, 
-            { clipPath: 'inset(0 0% 0 0)', duration: 3.5, ease: 'power1.inOut', delay: 0.8 }
-        );
-    }
+
 
     // Move 3D camera slightly to give sense of progression
     gsap.to(camera.position, {

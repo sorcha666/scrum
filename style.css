@@ -441,10 +441,35 @@ h1, h2, h3 {
     transform: scale(1.02);
 }
 
-/* --- Workflow Wipe Animation --- */
+/* --- Workflow Styles --- */
 .workflow-anim {
-    clip-path: inset(0 100% 0 0); /* Hidden completely from the right */
-    transition: none; /* Let GSAP handle the animation */
+    transition: transform 0.3s ease;
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 20px rgba(217, 4, 41, 0.2);
+}
+
+.workflow-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--accent);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    z-index: 5;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.workflow-caption {
+    margin-top: 15px;
+    font-size: 0.95rem;
+    color: var(--teal);
+    font-weight: 600;
+    font-style: italic;
+    opacity: 0.9;
 }
 
 /* --- Product Backlog Table --- */
