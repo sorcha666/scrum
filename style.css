@@ -439,6 +439,12 @@ h1, h2, h3 {
     transform: scale(1.02);
 }
 
+/* --- Workflow Wipe Animation --- */
+.workflow-anim {
+    clip-path: inset(0 100% 0 0); /* Hidden completely from the right */
+    transition: none; /* Let GSAP handle the animation */
+}
+
 /* --- Modal for zooming images --- */
 .modal {
     display: none;

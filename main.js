@@ -158,6 +158,15 @@ function animateSlideIn(index) {
         );
     }
 
+    // Animate Workflow Video Wipe Effect
+    const workflowImg = slide.querySelector('.workflow-anim');
+    if (workflowImg) {
+        gsap.fromTo(workflowImg, 
+            { clipPath: 'inset(0 100% 0 0)' }, 
+            { clipPath: 'inset(0 0% 0 0)', duration: 3.5, ease: 'power1.inOut', delay: 0.8 }
+        );
+    }
+
     // Move 3D camera slightly to give sense of progression
     gsap.to(camera.position, {
         z: 8 - (index * 0.2), // Zoom in slightly per slide
@@ -190,6 +199,11 @@ function animateSlideOut(index, direction) {
             slide.classList.remove('active');
             // reset styles for next time
             gsap.set(elements, { clearProps: "all" });
+            
+            const workflowImg = slide.querySelector('.workflow-anim');
+            if (workflowImg) {
+                gsap.set(workflowImg, { clearProps: "all" });
+            }
         }
     });
 }
