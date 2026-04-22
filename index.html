@@ -10,11 +10,6 @@
         
         .speech-notes { display: none; }
         
-        /* Speaker Notes Overlay Styles */
-        .speaker-notes { display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 80%; max-width: 800px; background: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; border-radius: 15px; border: 1px solid var(--accent); z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-size: 1.1rem; line-height: 1.5; }
-        .speaker-notes h4 { color: var(--accent); margin-top: 0; margin-bottom: 10px; font-family: 'Outfit', sans-serif; display: flex; align-items: center; gap: 10px; }
-        .speaker-notes.active { display: block; animation: slideUp 0.3s ease-out; }
-        @keyframes slideUp { from { transform: translate(-50%, 100%); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
         .notes-toggle { position: fixed; bottom: 20px; right: 80px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; z-index: 100; font-family: 'Inter', sans-serif; font-size: 0.8rem; transition: all 0.3s; display: flex; align-items: center; gap: 8px; }
         .notes-toggle:hover { background: var(--accent); border-color: var(--accent); color: black; }
     </style>
@@ -40,10 +35,6 @@
     <!-- Fixed Slide Counter -->
     <div id="slide-counter" class="fixed-counter">N</div>
     <button class="notes-toggle" onclick="toggleNotes()"><i class="ph ph-note"></i> Notes (N)</button>
-    <div id="speaker-notes-overlay" class="speaker-notes">
-        <h4><i class="ph ph-microphone-stage"></i> Speaker Notes</h4>
-        <div id="notes-content"></div>
-    </div>
 
     <!-- Main Presentation Container -->
     <main id="presentation"><section class="slide active" id="slide-1">
@@ -723,18 +714,47 @@
     <!-- Presentation Logic -->
     <script src="main.js"></script>
     <script>
+        let notesWindow = null;
+
         function toggleNotes() {
-            const notes = document.getElementById('speaker-notes-overlay');
-            notes.classList.toggle('active');
-            updateNotesContent();
+            if (!notesWindow || notesWindow.closed) {
+                notesWindow = window.open('', 'SpeakerNotes', 'width=600,height=500');
+                notesWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>Speaker Notes - Library Project</title>
+                        <style>
+                            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f172a; color: #f8fafc; padding: 40px; line-height: 1.6; font-size: 1.4rem; }
+                            .header { display: flex; align-items: center; gap: 15px; color: #38bdf8; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; border-bottom: 1px solid #334155; padding-bottom: 15px; }
+                            #notes-content { animation: fadeIn 0.4s ease-out; }
+                            @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+                            .meta { font-size: 0.9rem; color: #64748b; margin-top: 40px; border-top: 1px solid #334155; padding-top: 20px; }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="header">◆ Speaker Notes ◆</div>
+                        <div id="notes-content">Loading notes...</div>
+                        <div class="meta">Municipal Library Management System - Academic Defense 2026</div>
+                    </body>
+                    </html>
+                `);
+                notesWindow.document.close();
+            } else {
+                notesWindow.focus();
+            }
+            // Small delay to ensure document is ready
+            setTimeout(updateNotesContent, 100);
         }
 
         function updateNotesContent() {
             const currentSlide = document.querySelector('.slide.active');
-            if (currentSlide) {
+            if (currentSlide && notesWindow && !notesWindow.closed) {
                 const speechNotes = currentSlide.querySelector('.speech-notes');
-                const content = document.getElementById('notes-content');
-                content.innerHTML = speechNotes ? speechNotes.innerHTML : 'No notes available for this slide.';
+                const content = notesWindow.document.getElementById('notes-content');
+                if (content) {
+                    content.innerHTML = speechNotes ? speechNotes.innerHTML : 'No notes available for this slide.';
+                }
             }
         }
 
@@ -745,8 +765,7 @@
             }
         });
 
-        // Hook into slide changes (assuming main.js handles it)
-        // We'll update notes every time a slide is shown
+        // Hook into slide changes
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (mutation.attributeName === 'class') {
