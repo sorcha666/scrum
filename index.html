@@ -26,7 +26,7 @@
     <!-- Navigation Header (Logo only) -->
     <header>
         <div class="logo-container">
-            <img src="assets/logo_epi.png" alt="EPItech Logo" class="logo">
+            <img src="assets/logo_epi.png?v=3" alt="EPItech Logo" class="logo">
             <span class="logo-text">EPI DIGITAL SCHOOL</span>
         </div>
     </header>
@@ -449,7 +449,7 @@
                     <div class="right-col">
                         <div class="uml-card gsap-element">
                             <h3 class="text-must text-center mb-1">Sprint 1 (All Must Have)</h3>
-                            <img src="assets/sprint1_usecase.png" alt="Sprint 1 UML" class="uml-img zoom-img">
+                            <img src="assets/sprint1_usecase.png?v=3" alt="Sprint 1 UML" class="uml-img zoom-img">
                         </div>
                     </div>
                 </div>
@@ -484,7 +484,7 @@
                     <div class="right-col">
                         <div class="uml-card gsap-element">
                             <h3 class="text-must text-center mb-1">Sprint 2 (All Must Have)</h3>
-                            <img src="assets/sprint2_usecase.png" alt="Sprint 2 UML" class="uml-img zoom-img">
+                            <img src="assets/sprint2_usecase.png?v=3" alt="Sprint 2 UML" class="uml-img zoom-img">
                         </div>
                     </div>
                     </div>
@@ -523,7 +523,7 @@
                     <div class="right-col">
                         <div class="uml-card gsap-element">
                             <h3 class="text-must text-center mb-1">Sprint 3 (Must + Should)</h3>
-                            <img src="assets/sprint3_usecase.png" alt="Sprint 3 UML" class="uml-img zoom-img">
+                            <img src="assets/sprint3_usecase.png?v=3" alt="Sprint 3 UML" class="uml-img zoom-img">
                         </div>
                     </div>
                 </div>
@@ -559,14 +559,86 @@
                     <div class="right-col">
                         <div class="uml-card gsap-element">
                             <h3 class="text-should text-center mb-1">Sprint 4 (Should + Could)</h3>
-                            <img src="assets/sprint4_usecase.png" alt="Sprint 4 UML" class="uml-img zoom-img">
+                            <img src="assets/sprint4_usecase.png?v=3" alt="Sprint 4 UML" class="uml-img zoom-img">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="speech-notes">The final sprint, Sprint 4, was about quality and scaling. We added inter-branch transfers to balance the stock across the network. We also built a statistics dashboard so the Central Service can see how the libraries are performing.</div>
         </section>
-<section class="slide" id="slide-17">
+
+        <!-- WORKFLOW SLIDES -->
+        <section class="slide" id="slide-17">
+            <div class="content wide">
+                <h2 class="slide-title gsap-text">Workflow: Network Management</h2>
+                <p class="slide-subtitle gsap-text">How we manage the library branches</p>
+                <div class="uml-grid mt-3" style="grid-template-columns: 1fr;">
+                    <div class="uml-card" style="max-width: 800px; margin: 0 auto;">
+                        <img src="assets/workflow_0_en.png?v=3" alt="Network Workflow" class="uml-img zoom-img">
+                    </div>
+                </div>
+                <p class="intro-text text-center mt-3" style="font-size: 1.1rem;">This workflow shows how the Central Service manages the creation, staffing, and expansion of library branches across the city.</p>
+            </div>
+            <div class="speech-notes">This first workflow diagram illustrates the administrative backbone of our system. It shows the step-by-step process of branch creation, from initial registration to staff recruitment and the final assignment of a General Secretary. This ensures a consistent management structure across the entire network.</div>
+        </section>
+
+        <section class="slide" id="slide-18">
+            <div class="content wide">
+                <h2 class="slide-title gsap-text">Workflow: Book Acquisition</h2>
+                <p class="slide-subtitle gsap-text">The journey from title selection to library shelf</p>
+                <div class="uml-grid mt-2" style="grid-template-columns: 1fr;">
+                    <div class="uml-card" style="max-width: 650px; margin: 0 auto;">
+                        <img src="assets/workflow_1_en.png?v=3" alt="Acquisition Workflow" class="uml-img zoom-img">
+                    </div>
+                </div>
+                <p class="intro-text text-center mt-2" style="font-size: 1.1rem;">A collaborative process between readers and the Central Service to ensure only quality books enter the collection.</p>
+            </div>
+            <div class="speech-notes">Book acquisition is a collaborative process. It starts with identifying a title, followed by a professional review and summary. Most importantly, it includes a decision step for controversial books. Once approved, copies are ordered, automatically numbered, and distributed to the branches.</div>
+        </section>
+
+        <section class="slide" id="slide-19">
+            <div class="content wide">
+                <h2 class="slide-title gsap-text">Workflow: Membership</h2>
+                <p class="slide-subtitle gsap-text">Managing reader access and cards</p>
+                <div class="uml-grid mt-3" style="grid-template-columns: 1fr;">
+                    <div class="uml-card" style="max-width: 800px; margin: 0 auto;">
+                        <img src="assets/workflow_2_en.png?v=3" alt="Membership Workflow" class="uml-img zoom-img">
+                    </div>
+                </div>
+                <p class="intro-text text-center mt-3" style="font-size: 1.1rem;">From online registration to card renewal, ensuring secure and valid access for all residents.</p>
+            </div>
+            <div class="speech-notes">Membership management is the entry point for our readers. Residents can register online, and the system handles both new memberships and annual renewals. We also implemented a specific process for child access, linking minor accounts to their guardians for proper tracking.</div>
+        </section>
+
+        <section class="slide" id="slide-20">
+            <div class="content wide">
+                <h2 class="slide-title gsap-text">Workflow: Loans & Returns</h2>
+                <p class="slide-subtitle gsap-text">The core circulation cycle</p>
+                <div class="uml-grid mt-1" style="grid-template-columns: 1fr;">
+                    <div class="uml-card" style="max-width: 550px; margin: 0 auto;">
+                        <img src="assets/workflow_3_en.png?v=3" alt="Circulation Workflow" class="uml-img zoom-img">
+                    </div>
+                </div>
+                <p class="intro-text text-center mt-1" style="font-size: 1.1rem;">Managing the daily life of books with integrated checks for limits, delays, and damages.</p>
+            </div>
+            <div class="speech-notes">The circulation workflow is the most active part of the system. It manages everything from the initial availability check to the loan registration. During the return process, the system automatically checks for overdue books or damages, applying fees when necessary to maintain the quality of the collection.</div>
+        </section>
+
+        <section class="slide" id="slide-21">
+            <div class="content wide">
+                <h2 class="slide-title gsap-text">Workflow: Inter-Branch Transfers</h2>
+                <p class="slide-subtitle gsap-text">Balancing stock across the network</p>
+                <div class="uml-grid mt-3" style="grid-template-columns: 1fr;">
+                    <div class="uml-card" style="max-width: 800px; margin: 0 auto;">
+                        <img src="assets/workflow_4_en.png?v=3" alt="Transfer Workflow" class="uml-img zoom-img">
+                    </div>
+                </div>
+                <p class="intro-text text-center mt-3" style="font-size: 1.1rem;">Synchronizing inventory when moving books between libraries to optimize resource availability.</p>
+            </div>
+            <div class="speech-notes">Finally, the transfer workflow ensures that books are where they are needed most. When a deficit is identified, the Central Service initiates a transfer. This involves creating a formal transfer slip, physical courier delivery, and a final centralized sync to update the global inventory.</div>
+        </section>
+
+<section class="slide" id="slide-22">
             <div class="content">
                 <h2 class="slide-title gsap-text">Quality Standards</h2>
                 <p class="slide-subtitle gsap-text">Secure, reliable, and high-performance system</p>
@@ -608,7 +680,7 @@
             </div>
             <div class="speech-notes">Functional features are important, but quality is key. We followed ISO standards to ensure the system is fast, secure, and always available. This makes the platform reliable for thousands of readers across the city, ensuring a professional experience for the entire municipal network.</div>
         </section>
-<section class="slide" id="slide-18">
+<section class="slide" id="slide-23">
             <div class="content wide">
                 <h2 class="slide-title gsap-text">Team Performance</h2>
                 <p class="slide-subtitle gsap-text">Tracking progress and velocity</p>
@@ -617,13 +689,13 @@
                 
                 <div class="uml-grid" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto;">
                     <div class="uml-card gsap-element">
-                        <img src="assets/burndown_chart.png" alt="Burndown Chart" class="uml-img zoom-img" style="width: 100%;">
+                        <img src="assets/burndown_chart.png?v=3" alt="Burndown Chart" class="uml-img zoom-img" style="width: 100%;">
                     </div>
                 </div>
             </div>
             <div class="speech-notes">These charts show our progress. The steady decline in the burndown chart proves we managed our time well. We hit our targets in every sprint, which shows that our initial estimations were very accurate and the team's velocity was stable.</div>
         </section>
-<section class="slide" id="slide-19">
+<section class="slide" id="slide-24">
             <div class="content wide">
                 <h2 class="slide-title gsap-text">Project Board</h2>
                 <p class="slide-subtitle gsap-text">Visual tracking of our tasks</p>
@@ -664,7 +736,7 @@
             </div>
             <div class="speech-notes">We used a visual board to manage our daily work. This helped us see where tasks were stuck and allowed the team to collaborate better. By the end of Sprint 4, all 39 user stories were successfully moved to the 'Done' column, completing our project scope.</div>
         </section>
-<section class="slide" id="slide-20">
+<section class="slide" id="slide-25">
             <div class="content">
                 <h2 class="slide-title gsap-text">Conclusion</h2>
                 <p class="slide-subtitle gsap-text">Success and future steps</p>
@@ -686,7 +758,7 @@
             </div>
             <div class="speech-notes">To wrap up, we've delivered a complete, working system for the municipal library network. Through Scrum, we learned how to turn complex requirements into a functional product that truly helps the community. We are excited to see how this platform evolves in the future.</div>
         </section>
-<section class="slide" id="slide-21">
+<section class="slide" id="slide-26">
             <div class="content">
                 <h2 class="slide-title gsap-text">Thank You</h2>
                 <p class="slide-subtitle gsap-text">Questions and discussion</p>
@@ -696,7 +768,7 @@
                     <h1 class="mt-2" style="font-size: 5rem;">Any Questions?</h1>
                     <p class="mt-2" style="font-size: 1.5rem;">Thank you for your attention.</p>
                     <div class="logo-container mt-3">
-                        <img src="assets/logo_epi.png" class="logo" style="height: 100px;">
+                        <img src="assets/logo_epi.png?v=3" class="logo" style="height: 100px;">
                     </div>
                 </div>
             </div>

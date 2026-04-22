@@ -473,7 +473,7 @@ h1, h2, h3 {
 }
 
 /* --- Product Backlog Table --- */
-.backlog-table-container {
+.backlog-table-container, .sprint-backlog-container {
     max-height: 380px;
     overflow-y: auto;
     background: var(--glass-bg);

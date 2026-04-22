@@ -286,12 +286,16 @@ modal.addEventListener('click', (e) => {
     }
 });
 
-// Global scroll for Product Backlog (Slide 11 / index 10)
+// Global scroll for any scrollable container in the current slide
 window.addEventListener('wheel', (e) => {
-    if (currentSlide === 10) { // Slide 11
-        const container = document.querySelector('.backlog-table-container');
-        if (container) {
-            container.scrollTop += e.deltaY;
+    const activeSlide = document.querySelector('.slide.active');
+    if (activeSlide) {
+        // Try to find the backlog container (Slide 12) or sprint backlog container (Slides 13-16)
+        const scrollContainer = activeSlide.querySelector('.backlog-table-container') || 
+                              activeSlide.querySelector('.sprint-backlog-container');
+        
+        if (scrollContainer) {
+            scrollContainer.scrollTop += e.deltaY;
         }
     }
-});
+}, { passive: true });
