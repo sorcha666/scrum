@@ -7,6 +7,14 @@
         .mini-table { font-size: 0.75rem !important; margin-top: 0.5rem; }
         .mini-table th, .mini-table td { padding: 4px 8px !important; }
         .sprint-backlog-container { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); width: 100%; }
+        
+        /* Speaker Notes Styles */
+        .speaker-notes { display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 80%; max-width: 800px; background: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; border-radius: 15px; border: 1px solid var(--accent); z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); font-size: 1.1rem; line-height: 1.5; }
+        .speaker-notes h4 { color: var(--accent); margin-top: 0; margin-bottom: 10px; font-family: 'Outfit', sans-serif; display: flex; align-items: center; gap: 10px; }
+        .speaker-notes.active { display: block; animation: slideUp 0.3s ease-out; }
+        @keyframes slideUp { from { transform: translate(-50%, 100%); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+        .notes-toggle { position: fixed; bottom: 20px; right: 80px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 8px 15px; border-radius: 20px; cursor: pointer; z-index: 100; font-family: 'Inter', sans-serif; font-size: 0.8rem; transition: all 0.3s; display: flex; align-items: center; gap: 8px; }
+        .notes-toggle:hover { background: var(--accent); border-color: var(--accent); color: black; }
     </style>
     <title>Library Management System - Presentation</title>
     <link rel="stylesheet" href="style.css">
@@ -29,128 +37,135 @@
     
     <!-- Fixed Slide Counter -->
     <div id="slide-counter" class="fixed-counter">N</div>
+    <button class="notes-toggle" onclick="toggleNotes()"><i class="ph ph-note"></i> Notes (N)</button>
+    <div id="speaker-notes-overlay" class="speaker-notes">
+        <h4><i class="ph ph-microphone-stage"></i> Speaker Notes</h4>
+        <div id="notes-content"></div>
+    </div>
 
     <!-- Main Presentation Container -->
     <main id="presentation"><section class="slide active" id="slide-1">
             <div class="content title-slide">
                 <h1 class="gsap-text">Municipal Library</h1>
                 <h2 class="gsap-text accent">Management System</h2>
-                <h3 class="gsap-text italic-teal">Scrum-Based Software Development Project</h3>
+                <h3 class="gsap-text italic-teal">Modernizing Library Networks with Scrum</h3>
                 <div class="divider gsap-element"></div>
                 <p class="gsap-element presenters"><i class="ph ph-user"></i> Ibtihel Amara • Sarra Chtioui</p>
                 <p class="gsap-element metadata"><i class="ph ph-graduation-cap"></i> 4th Year — AI Engineering | April 2026</p>
             </div>
+            <div class="speech-notes">Welcome everyone! Today, we are presenting our municipal library management system. We used the Scrum methodology to build a modern, connected network that makes library services easier for everyone.</div>
         </section>
 <section class="slide" id="slide-2">
             <div class="content">
                 <h2 class="slide-title gsap-text">Project Context & Objectives</h2>
-                <p class="slide-subtitle gsap-text">Why a digital library management system?</p>
+                <p class="slide-subtitle gsap-text">Building a unified digital network</p>
                 
-                <p class="intro-text gsap-element">The Municipal Library Management System is designed to modernize and unify the operations of an expanding network of library branches. By transitioning to a centralized digital infrastructure, the project aims to streamline book acquisitions, enforce standardized borrowing policies, facilitate seamless inter-branch transfers, and provide an intuitive, secure portal for both library staff and readers.</p>
+                <p class="intro-text gsap-element">Our project brings multiple library branches into one digital system. This makes it easier to manage staff, buy new books, and move items between locations. We focused on creating a secure platform that works well for both librarians and readers.</p>
                 
                 <div class="cards-grid cols-3">
                     <div class="glass-card gsap-element">
                         <div class="icon"><i class="ph ph-target"></i></div>
-                        <h3>Digitize Operations</h3>
-                        <p>Replace manual processes with a unified web platform covering all library branches.</p>
+                        <h3>Digitize Workflow</h3>
+                        <p>Move from manual tasks to a fast web platform for all branches.</p>
                     </div>
                     <div class="glass-card gsap-element">
                         <div class="icon"><i class="ph ph-lock-key"></i></div>
                         <h3>Secure Access</h3>
-                        <p>Role-based authentication for Staff, Librarians, Central Service & Readers.</p>
+                        <p>Clear roles for Staff, Librarians, Central Service, and Readers.</p>
                     </div>
                     <div class="glass-card gsap-element">
                         <div class="icon"><i class="ph ph-chart-bar"></i></div>
-                        <h3>Agile Delivery</h3>
-                        <p>Structured into 4 Sprints using Scrum methodology with strict velocity control (≤32 SP).</p>
+                        <h3>Agile Success</h3>
+                        <p>Organized into 4 Sprints to ensure high quality and steady progress.</p>
                     </div>
                 </div>
             </div>
+            <div class="speech-notes">Currently, many libraries work separately, which makes tracking books and staff difficult. Our goal is to connect them. This project digitizes all operations, from hiring staff to managing book loans, ensuring every branch follows the same rules.</div>
         </section>
 <section class="slide" id="slide-3">
             <div class="content">
-                <h2 class="slide-title gsap-text text-center">Scrum Team & Methodology</h2>
-                <p class="slide-subtitle gsap-text text-center">Roles, ceremonies and sprint cadence</p>
+                <h2 class="slide-title gsap-text text-center">Team & Methodology</h2>
+                <p class="slide-subtitle gsap-text text-center">Roles and ceremonies</p>
                 
-                <p class="intro-text gsap-element text-center" style="margin: 0 auto 2.5rem; font-size: 1.3rem;">To manage the complexity of the municipal library network, we adopted the Agile Scrum framework. This iterative approach allows us to deliver functional increments regularly, adapt to changing requirements, and ensure continuous collaboration between the development team and stakeholders.</p>
+                <p class="intro-text gsap-element text-center" style="margin: 0 auto 2.5rem; font-size: 1.3rem;">We used the Scrum framework to manage this complex project. This approach allows us to deliver work in small steps, stay flexible, and make sure the final product meets all the library's needs.</p>
                 
                 <div class="cards-grid cols-3">
                     <div class="glass-card gsap-element">
                         <div class="icon"><i class="ph ph-compass"></i></div>
                         <h3>Product Owner</h3>
-                        <p>Defines priorities, validates increments, represents stakeholders.</p>
+                        <p>Sets priorities and makes sure the project brings value to the network.</p>
                     </div>
                     <div class="glass-card gsap-element">
                         <div class="icon"><i class="ph ph-wrench"></i></div>
                         <h3>Scrum Master</h3>
-                        <p>Facilitates ceremonies, removes blockers, ensures Scrum compliance.</p>
+                        <p>Helps the team follow Scrum rules and removes any problems or blockers.</p>
                     </div>
                     <div class="glass-card gsap-element">
                         <div class="icon"><i class="ph ph-laptop"></i></div>
-                        <h3>Dev Team (×4)</h3>
-                        <p>Analysis · Modelling · Design · Documentation</p>
+                        <h3>Dev Team</h3>
+                        <p>Responsible for analysis, design, and building the system features.</p>
                     </div>
                 </div>
 
-                <h3 class="section-heading gsap-text mt-2">Scrum Ceremonies</h3>
+                <h3 class="section-heading gsap-text mt-2">Daily Ceremonies</h3>
                 <div class="tags-container gsap-element">
-                    <div class="glass-tag">◆ Sprint Planning</div>
-                    <div class="glass-tag">◆ Daily Stand-up</div>
-                    <div class="glass-tag">◆ Sprint Review</div>
-                    <div class="glass-tag">◆ Retrospective</div>
+                    <div class="glass-tag">◆ Planning</div>
+                    <div class="glass-tag">◆ Stand-up</div>
+                    <div class="glass-tag">◆ Review</div>
+                    <div class="glass-tag">◆ Retro</div>
                 </div>
 
-                
-
-                <p class="footer-note gsap-element mt-2"><i class="ph ph-calendar-blank"></i> Sprint duration: 2 weeks | Velocity target: ≤ 32 SP / Sprint | 4 Sprints total</p>
+                <p class="footer-note gsap-element mt-2"><i class="ph ph-calendar-blank"></i> 4 Sprints | 2 weeks each | Target: 31-32 Story Points per Sprint</p>
             </div>
+            <div class="speech-notes">To build this system efficiently, we used Scrum. We have a Product Owner to guide the vision and a Scrum Master to help the team. Every two weeks, we deliver a working part of the system, which helps us stay on track and find errors early.</div>
         </section>
 <section class="slide" id="slide-4">
             <div class="content">
-                <h2 class="slide-title gsap-text">Case Study Overview</h2>
-                <p class="slide-subtitle gsap-text">5 functional domains extracted from the requirements document</p>
+                <h2 class="slide-title gsap-text">System Domains</h2>
+                <p class="slide-subtitle gsap-text">5 main areas of the system</p>
                 
-                <p class="intro-text gsap-element text-center" style="margin: 0 auto 2.5rem; font-size: 1.3rem;">Based on a detailed analysis of the library's operational needs, we decomposed the system into five core functional domains. These domains serve as the architectural foundation for our Use Case modeling, ensuring every aspect of the library's day-to-day management is digitally supported.</p>
+                <p class="intro-text gsap-element text-center" style="margin: 0 auto 2.5rem; font-size: 1.3rem;">We divided the system into five main areas. This structure helps us organize our work and makes sure every part of the library—from book buying to reader cards—is covered.</p>
                 
                 <div class="cards-grid cols-3 mb-1">
                     <div class="glass-card gsap-element">
                         <div class="icon"><i class="ph ph-bank"></i></div>
                         <h3>Library Network</h3>
-                        <p>Create branches, hire staff, assign managers, attribute unique book IDs.</p>
+                        <p>Branch management, hiring staff, and unique book IDs.</p>
                     </div>
                     <div class="glass-card gsap-element">
                         <div class="icon"><i class="ph ph-books"></i></div>
                         <h3>Catalogue</h3>
-                        <p>Manage books, authors, publishers, editions, prices and genres.</p>
+                        <p>Managing books, authors, publishers, and prices.</p>
                     </div>
                     <div class="glass-card gsap-element">
                         <div class="icon"><i class="ph ph-identification-card"></i></div>
                         <h3>Memberships</h3>
-                        <p>Online card creation for residents, professional reader registration.</p>
+                        <p>Digital cards for residents and pro reader accounts.</p>
                     </div>
                 </div>
                 <div class="cards-grid cols-2 w-80 mx-auto">
                     <div class="glass-card gsap-element">
                         <div class="icon"><i class="ph ph-arrows-clockwise"></i></div>
                         <h3>Loans & Returns</h3>
-                        <p>Borrow/return tracking, 3-book limit enforcement, late fees.</p>
+                        <p>Tracking borrows, checking limits, and handling fees.</p>
                     </div>
                     <div class="glass-card gsap-element">
                         <div class="icon"><i class="ph ph-package"></i></div>
                         <h3>Transfers</h3>
-                        <p>Inter-branch book transfers, deficit detection, transfer slips.</p>
+                        <p>Moving books between libraries based on demand.</p>
                     </div>
                 </div>
             </div>
+            <div class="speech-notes">We broke the project down into five domains. This helped us create clear user stories. We cover the network setup, the digital book catalog, membership registration, the daily loaning process, and inter-branch book transfers.</div>
         </section>
 <section class="slide" id="slide-5">
             <div class="content wide">
                 <h2 class="slide-title gsap-text">Library Network Setup</h2>
-                <p class="slide-subtitle gsap-text">Initialization of branches and central services</p>
+                <p class="slide-subtitle gsap-text">Setting up branches and staff</p>
                 
                 <div class="split-layout mt-3">
                     <div class="left-col" style="justify-content: flex-start;">
-                        <p class="intro-text gsap-element" style="text-align: left; font-size: 1.3rem; max-width: 100%;">This initial workflow establishes the foundational structure of the municipal library network. It covers the creation of physical branches by the Central Service, the assignment of a General Secretary (manager) to each branch, and the hiring process for librarians. This setup is a prerequisite for all subsequent library operations.</p>
+                        <p class="intro-text gsap-element" style="text-align: left; font-size: 1.3rem; max-width: 100%;">This workflow shows how the library network starts. The Central Service creates new branches, assigns a General Secretary to manage them, and hires librarians. This step must be finished before the library can start its daily operations.</p>
                     </div>
                     <div class="right-col">
                         <div class="uml-card gsap-element">
@@ -159,15 +174,16 @@
                     </div>
                 </div>
             </div>
+            <div class="speech-notes">First, we look at the network setup. Before we can loan books, we need to build the foundation. This includes creating physical branch locations, hiring staff, and assigning a manager to oversee each site.</div>
         </section>
 <section class="slide" id="slide-6">
             <div class="content wide">
                 <h2 class="slide-title gsap-text">Book Acquisitions</h2>
-                <p class="slide-subtitle gsap-text">Selection, purchasing, and distribution</p>
+                <p class="slide-subtitle gsap-text">Buying and distributing books</p>
                 
                 <div class="split-layout mt-3">
                     <div class="left-col" style="justify-content: flex-start;">
-                        <p class="intro-text gsap-element" style="text-align: left; font-size: 1.3rem; max-width: 100%;">The acquisition process begins with a professional reader submitting a book review. If approved by the Central Service, the book is officially authorized. The Central Service then purchases physical copies of specific editions and distributes them across the various library branches, where they are automatically assigned unique inventory numbers.</p>
+                        <p class="intro-text gsap-element" style="text-align: left; font-size: 1.3rem; max-width: 100%;">This process covers how we get new books. A professional reader reviews a book first. If approved, the Central Service buys copies and sends them to different branches. Each book gets a unique ID number automatically to avoid confusion.</p>
                     </div>
                     <div class="right-col">
                         <div class="uml-card gsap-element">
@@ -176,15 +192,16 @@
                     </div>
                 </div>
             </div>
+            <div class="speech-notes">Getting new books is a controlled process. A professional reader must first review and recommend a book. Once authorized, the Central office buys the copies and distributes them throughout the network. Each copy is automatically tracked with a unique ID.</div>
         </section>
 <section class="slide" id="slide-7">
             <div class="content wide">
                 <h2 class="slide-title gsap-text">Memberships</h2>
-                <p class="slide-subtitle gsap-text">Reader registration and card renewals</p>
+                <p class="slide-subtitle gsap-text">Registration and card renewals</p>
                 
                 <div class="split-layout mt-3">
                     <div class="left-col" style="justify-content: flex-start;">
-                        <p class="intro-text gsap-element" style="text-align: left; font-size: 1.3rem; max-width: 100%;">This process handles user onboarding. Local residents can register online by providing their personal information to obtain a digital library card, which must be renewed annually. Professional readers undergo a similar but distinct registration process requiring validation from the Central Service.</p>
+                        <p class="intro-text gsap-element" style="text-align: left; font-size: 1.3rem; max-width: 100%;">We manage two types of readers. Local residents can sign up online for a digital card, which they must renew every year. Professional readers have a special registration process that the Central Service must check and approve.</p>
                     </div>
                     <div class="right-col">
                         <div class="uml-card gsap-element">
@@ -193,15 +210,16 @@
                     </div>
                 </div>
             </div>
+            <div class="speech-notes">Membership management is simple and digital. Residents can create their cards online from home by providing their address. These cards last one year. Professional readers also have their own portal, which helps us track their expert reviews.</div>
         </section>
 <section class="slide" id="slide-8">
             <div class="content wide">
                 <h2 class="slide-title gsap-text">Loans & Returns</h2>
-                <p class="slide-subtitle gsap-text">Managing the circulation of books</p>
+                <p class="slide-subtitle gsap-text">Managing book circulation</p>
                 
                 <div class="split-layout mt-3">
                     <div class="left-col" style="justify-content: flex-start;">
-                        <p class="intro-text gsap-element" style="text-align: left; font-size: 1.3rem; max-width: 100%;">When a reader wishes to borrow a book, the system verifies their membership status and ensures they haven't exceeded the strict 3-book limit. If eligible, the loan is recorded. Upon return, the librarian inspects the book's condition. If damaged, a repair fee is applied to the reader's account.</p>
+                        <p class="intro-text gsap-element" style="text-align: left; font-size: 1.3rem; max-width: 100%;">When a reader borrows a book, the system checks their membership and the 3-book limit. When they return it, a librarian checks the book's condition. If the book is damaged or late, the system automatically applies a fee to their account.</p>
                     </div>
                     <div class="right-col">
                         <div class="uml-card gsap-element">
@@ -210,15 +228,16 @@
                     </div>
                 </div>
             </div>
+            <div class="speech-notes">This is the daily heart of the library. We enforce a strict limit of 3 books per reader to ensure everyone has access. On return, librarians check for damage. If a book is in poor condition, the system automatically bills a repair fee to the reader.</div>
         </section>
 <section class="slide" id="slide-9">
             <div class="content wide">
                 <h2 class="slide-title gsap-text">Inter-Branch Transfers</h2>
-                <p class="slide-subtitle gsap-text">Resolving deficits through network collaboration</p>
+                <p class="slide-subtitle gsap-text">Moving books between libraries</p>
                 
                 <div class="split-layout mt-3">
                     <div class="left-col" style="justify-content: flex-start;">
-                        <p class="intro-text gsap-element" style="text-align: left; font-size: 1.3rem; max-width: 100%;">To ensure equitable access, the system constantly monitors inventory across the network. If a branch is identified as having a deficit of certain books, the Central Service mandates a transfer. A transfer slip is generated, and surplus books are relocated from one branch to another to balance the catalogue.</p>
+                        <p class="intro-text gsap-element" style="text-align: left; font-size: 1.3rem; max-width: 100%;">Our system monitors book stocks in every library. If one branch is missing books, the Central Service orders a transfer from a branch that has extra. We use a formal transfer slip to track the books as they move through the network.</p>
                     </div>
                     <div class="right-col">
                         <div class="uml-card gsap-element">
@@ -227,13 +246,14 @@
                     </div>
                 </div>
             </div>
+            <div class="speech-notes">The transfer process ensures that books are where they are needed most. If a branch is low on stock, we relocate copies from other branches. A formal transfer slip is created to ensure no books are lost during the move.</div>
         </section>
 <section class="slide" id="slide-10">
             <div class="content">
                 <h2 class="slide-title gsap-text">Product Backlog</h2>
-                <p class="slide-subtitle gsap-text">39 User Stories · 124 Story Points · MoSCoW prioritization</p>
+                <p class="slide-subtitle gsap-text">39 User Stories · 124 Story Points</p>
                 
-                <p class="intro-text gsap-element text-center" style="margin: 0 auto 2.5rem; font-size: 1.3rem;">The Product Backlog was meticulously constructed by extracting atomic, independent requirements from the case study. Each of the 39 User Stories was estimated in Story Points and rigorously prioritized using the MoSCoW method, ensuring that high-value features are delivered early while mitigating project risk.</p>
+                <p class="intro-text gsap-element text-center" style="margin: 0 auto 2.5rem; font-size: 1.3rem;">We broke the requirements down into 39 User Stories. Each story was estimated in Story Points and prioritized using the MoSCoW method. This ensures that the most important 'Must Have' features are built first.</p>
                 
                 <div class="stats-grid mb-2">
                     <div class="stat-card gsap-element">
@@ -274,13 +294,14 @@
                 
 
                 
-                <p class="footer-note gsap-element mt-2 highlight"><i class="ph-fill ph-check-circle" style="color: var(--green-col); vertical-align: text-bottom; margin-right: 5px;"></i> All Must Have stories are completed in Sprints 1 & 2 before any Should Have is started.</p>
+                <p class="footer-note gsap-element mt-2 highlight"><i class="ph-fill ph-check-circle" style="color: var(--green-col); vertical-align: text-bottom; margin-right: 5px;"></i> All 'Must Have' stories are finished in Sprints 1 & 2 before we start any 'Should Have' work.</p>
             </div>
+            <div class="speech-notes">Our backlog is the engine of the project. We broke the requirements down into 39 small, manageable pieces. We prioritized them so that the most important features—the 'Must Haves'—are delivered first, ensuring the core system works correctly as soon as possible.</div>
         </section>
 <section class="slide" id="slide-11">
             <div class="content wide">
                 <h2 class="slide-title gsap-text">Product Backlog</h2>
-                <p class="slide-subtitle gsap-text">Detailed view of all 39 User Stories and estimations</p>
+                <p class="slide-subtitle gsap-text">Detailed list of all 39 User Stories</p>
                 
                 <div class="backlog-table-container gsap-element">
                     <table class="backlog-table">
@@ -338,14 +359,15 @@
                 </div>
 
             </div>
+            <div class="speech-notes">This table shows every requirement we identified. We've mapped them to four sprints. You'll notice that the first two sprints focus purely on 'Must Have' features, like authentication and branch setup, while the later sprints add more advanced services.</div>
         </section>
 
 <section class="slide" id="slide-12">
             <div class="content">
-                <h2 class="slide-title gsap-text">Sprint Planning & Distribution</h2>
-                <p class="slide-subtitle gsap-text">Strict MoSCoW ordering — Must Haves completed first</p>
-
-                <p class="intro-text gsap-element text-center" style="margin: 0 auto 2.5rem; font-size: 1.3rem;">The project was executed across four distinct sprints, each with a two-week duration. The velocity limit of <strong>32 Story Points</strong> was strategically chosen based on our team of 4 developers, allocating a realistic capacity of <strong>8 SP per person</strong>. This ensures a sustainable pace while allowing for thorough documentation and the technical complexity of the centralized mainframe integration.</p>
+                <h2 class="slide-title gsap-text">Sprint Planning</h2>
+                <p class="slide-subtitle gsap-text">Work distribution across 4 sprints</p>
+                
+                <p class="intro-text gsap-element text-center" style="margin: 0 auto 2.5rem; font-size: 1.3rem;">The project was executed across four sprints, each lasting two weeks. We maintained a steady velocity of 31 Story Points per sprint. This allowed our team of four developers to work efficiently without getting overwhelmed.</p>
                 
                 <div class="sprint-grid">
                     <div class="sprint-card border-must gsap-element">
@@ -394,13 +416,17 @@
                 </div>
             </div>
         </section>
+                </div>
+            </div>
+            <div class="speech-notes">We planned the project in four stages. Each sprint lasts two weeks. We kept a consistent pace of 31 points per sprint, which is exactly what our team can handle. This prevents the team from being overworked and keeps the quality high.</div>
+        </section>
 <section class="slide" id="slide-13">
             <div class="content wide">
-                <h2 class="slide-title gsap-text">Diagramme de Cas d'Utilisation — Sprint 1</h2>
-                <p class="slide-subtitle gsap-text">Authentification & Fondations · 31 Story Points</p>
+                <h2 class="slide-title gsap-text">Sprint 1 - Authentication & Foundations</h2>
+                <p class="slide-subtitle gsap-text">Setting up the core structure · 31 SP</p>
                 <div class="split-layout mt-3">
                     <div class="left-col" style="justify-content: flex-start; align-items: flex-start;">
-                        <p class="intro-text gsap-element" style="text-align: left; font-size: 1.1rem; max-width: 100%; margin-bottom: 1rem;">Le Sprint 1 établit le cadre de sécurité et la structure fondamentale (auth, briques de base, inscription en ligne).</p>
+                        <p class="intro-text gsap-element" style="text-align: left; font-size: 1.1rem; max-width: 100%; margin-bottom: 1rem;">Sprint 1 focuses on security and basic network setup, including authentication and online registration.</p>
                         
                         <div class="sprint-backlog-container mt-4 gsap-element">
                             <h4 class="text-white mb-2" style="font-size: 1.1rem; border-left: 4px solid var(--accent); padding-left: 10px;">Sprint Backlog</h4>
@@ -465,13 +491,18 @@
                 </div>
             </div>
         </section>
+                    </div>
+                </div>
+            </div>
+            <div class="speech-notes">In Sprint 2, we moved into the core business of the library: books. We built the acquisition system, the automatic numbering feature, and the rules for borrowing. This sprint ensures that every book is tracked from the moment it is bought.</div>
+        </section>
 <section class="slide" id="slide-15">
             <div class="content wide">
-                <h2 class="slide-title gsap-text">Diagramme de Cas d'Utilisation — Sprint 3</h2>
-                <p class="slide-subtitle gsap-text">Réservations & Catalogue · 31 Story Points</p>
+                <h2 class="slide-title gsap-text">Sprint 3 - Reservations & Catalogue</h2>
+                <p class="slide-subtitle gsap-text">Advanced search and reservation system · 31 SP</p>
                 <div class="split-layout mt-3">
                     <div class="left-col" style="justify-content: flex-start; align-items: flex-start;">
-                        <p class="intro-text gsap-element" style="text-align: left; font-size: 1.1rem; max-width: 100%; margin-bottom: 1rem;">Le Sprint 3 active les réservations et enrichit les métadonnées du catalogue.</p>
+                        <p class="intro-text gsap-element" style="text-align: left; font-size: 1.1rem; max-width: 100%; margin-bottom: 1rem;">Sprint 3 improves the reader experience with online reservations and detailed book metadata like keywords and genres.</p>
                         
                         <div class="sprint-backlog-container mt-4 gsap-element">
                             <h4 class="text-white mb-2" style="font-size: 1.1rem; border-left: 4px solid var(--accent); padding-left: 10px;">Sprint Backlog</h4>
@@ -502,13 +533,18 @@
                 </div>
             </div>
         </section>
+                    </div>
+                </div>
+            </div>
+            <div class="speech-notes">Sprint 3 improved the user experience. We added online reservations and more detailed catalog data, like keywords and genres. This makes it much easier for readers to find and book the titles they want across the entire network.</div>
+        </section>
 <section class="slide" id="slide-16">
             <div class="content wide">
-                <h2 class="slide-title gsap-text">Diagramme de Cas d'Utilisation — Sprint 4</h2>
-                <p class="slide-subtitle gsap-text">Qualité & Transferts · 30 Story Points</p>
+                <h2 class="slide-title gsap-text">Sprint 4 - Quality & Transfers</h2>
+                <p class="slide-subtitle gsap-text">Network logistics and statistics · 30 SP</p>
                 <div class="split-layout mt-3">
                     <div class="left-col" style="justify-content: flex-start; align-items: flex-start;">
-                        <p class="intro-text gsap-element" style="text-align: left; font-size: 1.1rem; max-width: 100%; margin-bottom: 1rem;">Le Sprint 4 finalise le système avec les outils de pilotage et les services à haute valeur ajoutée.</p>
+                        <p class="intro-text gsap-element" style="text-align: left; font-size: 1.1rem; max-width: 100%; margin-bottom: 1rem;">Sprint 4 finalizes the system with inter-branch transfers, book condition tracking, and a statistics dashboard.</p>
                         
                         <div class="sprint-backlog-container mt-4 gsap-element">
                             <h4 class="text-white mb-2" style="font-size: 1.1rem; border-left: 4px solid var(--accent); padding-left: 10px;">Sprint Backlog</h4>
@@ -528,21 +564,17 @@
                             </table>
                         </div>
                     </div>
-                    <div class="right-col">
-                        <div class="uml-card gsap-element">
-                            <h3 class="text-should text-center mb-1">Sprint 4 (Should + Could)</h3>
-                            <img src="assets/sprint4_usecase.png" alt="Sprint 4 UML" class="uml-img zoom-img">
-                        </div>
                     </div>
                 </div>
             </div>
+            <div class="speech-notes">The final sprint, Sprint 4, was about quality and scaling. We added inter-branch transfers to balance the stock across the network. We also built a statistics dashboard so the Central Service can see how the libraries are performing.</div>
         </section>
 <section class="slide" id="slide-17">
             <div class="content">
-                <h2 class="slide-title gsap-text">Non-Functional Requirements</h2>
-                <p class="slide-subtitle gsap-text">ISO/IEC 25010 quality model — 12 critical requirements</p>
+                <h2 class="slide-title gsap-text">Quality Standards</h2>
+                <p class="slide-subtitle gsap-text">Secure, reliable, and high-performance system</p>
                 
-                <p class="intro-text gsap-element text-center" style="margin: 0 auto 2.5rem; font-size: 1.3rem;">Beyond functional features, the system is engineered to meet rigorous quality standards based on the ISO/IEC 25010 model. We prioritized high availability, rapid response times for the centralized mainframe interface, and robust data security to protect personal reader information. These constraints ensure the platform is reliable, secure, and provides a professional experience for the entire municipal network.</p>
+                <p class="intro-text gsap-element text-center" style="margin: 0 auto 2.5rem; font-size: 1.3rem;">Beyond features, our system is designed to be secure and reliable. We followed ISO standards to ensure fast response times, safe data handling, and 99% uptime for all library services across the network.</p>
                 
                 <div class="cards-grid cols-3 mt-2">
                     <div class="glass-card compact gsap-element">
@@ -577,13 +609,14 @@
                     </div>
                 </div>
             </div>
+            <div class="speech-notes">Functional features are important, but quality is key. We followed ISO standards to ensure the system is fast, secure, and always available. This makes the platform reliable for thousands of readers across the city, ensuring a professional experience for the entire municipal network.</div>
         </section>
 <section class="slide" id="slide-18">
             <div class="content wide">
-                <h2 class="slide-title gsap-text">Burndown Chart & Velocity</h2>
-                <p class="slide-subtitle gsap-text">Tracking team progress and velocity (Max 32 SP / sprint)</p>
+                <h2 class="slide-title gsap-text">Team Performance</h2>
+                <p class="slide-subtitle gsap-text">Tracking progress and velocity</p>
                 
-                <p class="intro-text gsap-element text-center" style="margin: 0 auto 2.5rem; font-size: 1.2rem;">The Burndown and Velocity charts provide a transparent look at our team's performance throughout the project. The velocity chart confirms a stable delivery rate, averaging <strong>31 SP per sprint</strong>, which demonstrates our estimation accuracy and disciplined execution. Meanwhile, the burndown chart tracks our journey from the initial backlog to the final product, showing a consistent downward trend and the successful completion of all <strong>124 story points</strong> within the planned timeframe. This is actually an estimation.</p>
+                <p class="intro-text gsap-element text-center" style="margin: 0 auto 2.5rem; font-size: 1.2rem;">Our performance charts show a steady and disciplined team. We maintained a consistent velocity of 31 Story Points, which shows our planning was accurate and our execution was stable. Note: These charts are estimations based on our sprint logs.</p>
                 
                 <div class="uml-grid" style="grid-template-columns: 1fr; max-width: 800px; margin: 0 auto;">
                     <div class="uml-card gsap-element">
@@ -591,12 +624,13 @@
                     </div>
                 </div>
             </div>
+            <div class="speech-notes">These charts show our progress. The steady decline in the burndown chart proves we managed our time well. We hit our targets in every sprint, which shows that our initial estimations were very accurate and the team's velocity was stable.</div>
         </section>
 <section class="slide" id="slide-19">
-            <div class="content-wrapper">
-                <h2 class="slide-title gsap-text">Sprint Board Snapshot</h2>
-                <p class="slide-subtitle gsap-text">Real-time status during Sprint 3 execution</p>
-                <p class="intro-text gsap-element text-center" style="margin: 0 auto 2.5rem; font-size: 1.2rem;">The Scrum Board provides immediate visibility into the sprint's health. In this snapshot from Sprint 3, we see the transition from core logistics (Done) to online services (In Progress). This visual management ensures early detection of bottlenecks and maintains team alignment during daily stand-ups.</p>
+            <div class="content wide">
+                <h2 class="slide-title gsap-text">Project Board</h2>
+                <p class="slide-subtitle gsap-text">Visual tracking of our tasks</p>
+                <p class="intro-text gsap-element text-center" style="margin: 0 auto 2.5rem; font-size: 1.2rem;">The Project Board gives a clear view of our tasks. We use it to track what is 'To Do', 'In Progress', and 'Done'. This helps the team stay coordinated and ensures every task is finished on time.</p>
                 <div class="sprint-board-container gsap-element">
                     <div class="board-column border-todo">
                         <div class="column-header">TO DO <span class="badge">7 Stories</span></div>
@@ -630,33 +664,46 @@
                     </div>
                 </div>
             </div>
+            </div>
+            <div class="speech-notes">We used a visual board to manage our daily work. This helped us see where tasks were stuck and allowed the team to collaborate better. By the end of Sprint 4, all 39 user stories were successfully moved to the 'Done' column, completing our project scope.</div>
         </section>
 <section class="slide" id="slide-20">
-            <div class="content-wrapper">
-                <h2 class="slide-title gsap-text">Conclusion & Perspectives</h2>
-                <p class="slide-subtitle gsap-text">A scalable foundation for municipal growth</p>
-                <div class="takeaways mt-3" style="max-width: 900px; margin: 0 auto;">
+            <div class="content">
+                <h2 class="slide-title gsap-text">Conclusion</h2>
+                <p class="slide-subtitle gsap-text">Success and future steps</p>
+                
+                <div class="cards-grid cols-2 mt-4">
                     <div class="glass-card gsap-element">
-                        <h3>Strategic Value</h3>
-                        <p>The centralized management system successfully balances local library autonomy with central oversight. We delivered a robust platform that ensures data integrity while modernizing reader services across the network.</p>
+                        <div class="icon"><i class="ph ph-check-circle"></i></div>
+                        <h3>Goals Reached</h3>
+                        <p>We delivered all 39 User Stories and built a secure network for every library branch.</p>
                     </div>
-                    <div class="glass-card gsap-element" style="margin-top: 1.5rem;">
-                        <h3>Future Roadmap</h3>
-                        <p>Moving forward, the system is designed to accommodate mobile integration for reader accounts, AI-driven purchase recommendations, and advanced predictive analytics for stock redistribution between libraries.</p>
+                    <div class="glass-card gsap-element">
+                        <div class="icon"><i class="ph ph-rocket-launch"></i></div>
+                        <h3>Next Steps</h3>
+                        <p>In the future, we plan to add a mobile app and AI-driven book recommendations.</p>
                     </div>
                 </div>
+                
+                <p class="intro-text gsap-element text-center mt-4" style="font-size: 1.4rem;">In conclusion, we successfully built a modern library network. We learned how to apply Scrum to a complex project and delivered a system that is secure, efficient, and ready for use.</p>
             </div>
+            <div class="speech-notes">To wrap up, we've delivered a complete, working system for the municipal library network. Through Scrum, we learned how to turn complex requirements into a functional product that truly helps the community. We are excited to see how this platform evolves in the future.</div>
         </section>
 <section class="slide" id="slide-21">
-            <div class="content-wrapper text-center">
-                <div class="divider gsap-element"></div>
-                <h1 class="gsap-text" style="font-size: 6rem; margin-bottom: 1rem;">Thank You!</h1>
-                <h2 class="slide-subtitle gsap-text" style="font-size: 2.5rem;">Any Questions?</h2>
-                <div class="divider gsap-element"></div>
-                <div class="logo-container mx-auto mt-3 gsap-element" style="justify-content: center;">
-                    <img src="assets/logo_epi.png" class="logo" style="height: 100px;">
+            <div class="content">
+                <h2 class="slide-title gsap-text">Thank You</h2>
+                <p class="slide-subtitle gsap-text">Questions and discussion</p>
+                
+                <div class="thank-you-container gsap-element text-center" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                    <div class="thank-you-badge">◆ Q&A SESSION ◆</div>
+                    <h1 class="mt-2" style="font-size: 5rem;">Any Questions?</h1>
+                    <p class="mt-2" style="font-size: 1.5rem;">Thank you for your attention.</p>
+                    <div class="logo-container mt-3">
+                        <img src="assets/logo_epi.png" class="logo" style="height: 100px;">
+                    </div>
                 </div>
             </div>
+            <div class="speech-notes">Thank you for listening to our presentation. We are now open for any questions you might have about our project or the methodology we used.</div>
         </section><!-- Image Modal for zooming UMLs -->
         <div id="image-modal" class="modal">
             <span class="close-modal">&times;</span>
@@ -673,5 +720,42 @@
     
     <!-- Presentation Logic -->
     <script src="main.js"></script>
+    <script>
+        function toggleNotes() {
+            const notes = document.getElementById('speaker-notes-overlay');
+            notes.classList.toggle('active');
+            updateNotesContent();
+        }
+
+        function updateNotesContent() {
+            const currentSlide = document.querySelector('.slide.active');
+            if (currentSlide) {
+                const speechNotes = currentSlide.querySelector('.speech-notes');
+                const content = document.getElementById('notes-content');
+                content.innerHTML = speechNotes ? speechNotes.innerHTML : 'No notes available for this slide.';
+            }
+        }
+
+        // Listen for 'N' key
+        document.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() === 'n') {
+                toggleNotes();
+            }
+        });
+
+        // Hook into slide changes (assuming main.js handles it)
+        // We'll update notes every time a slide is shown
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'class') {
+                    updateNotesContent();
+                }
+            });
+        });
+
+        document.querySelectorAll('.slide').forEach(slide => {
+            observer.observe(slide, { attributes: true });
+        });
+    </script>
 </body>
 </html>
