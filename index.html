@@ -253,7 +253,7 @@
 <section class="slide" id="slide-10">
             <div class="content">
                 <h2 class="slide-title gsap-text">Product Backlog</h2>
-                <p class="intro-text gsap-element text-center" style="margin: 0 auto 2.5rem; font-size: 1.3rem;">We broke the requirements down into 41 User Stories. Each story was estimated in Story Points and prioritized using the MoSCoW method. This ensures that the most important 'Must Have' features are built first.</p>
+                <p class="intro-text gsap-element text-center" style="margin: 0 auto 2.5rem; font-size: 1.3rem;">We broke the requirements down into 41 User Stories. Each story was estimated in Story Points and assigned a sequential priority number from 1 to 41. Lower numbers are delivered first, ensuring the most critical features are built early.</p>
                 
                 <div class="stats-grid mb-2">
                     <div class="stat-card gsap-element">
@@ -273,28 +273,22 @@
                         <p>Avg. SP/Sprint</p>
                     </div>
                 </div>
-
-                <h3 class="section-heading gsap-text">MoSCoW Breakdown</h3>
+                <h3 class="section-heading gsap-text">Priority Distribution by Sprint</h3>
                 <div class="moscow-grid">
                     <div class="moscow-card must gsap-element">
-                        <h3>M - Must Have</h3>
-                        <p>24 stories · 81 SP</p>
+                        <h3>Sprint 1</h3>
+                        <p>Priority #1 → #11 · 32 SP</p>
                     </div>
                     <div class="moscow-card should gsap-element">
-                        <h3>S - Should Have</h3>
-                        <p>16 stories · 47 SP</p>
+                        <h3>Sprint 2</h3>
+                        <p>Priority #12 → #25 · 33 SP</p>
                     </div>
                     <div class="moscow-card could gsap-element">
-                        <h3>C - Could Have</h3>
-                        <p>1 story · 2 SP</p>
+                        <h3>Sprint 3</h3>
+                        <p>Priority #26 → #36 · 33 SP</p>
                     </div>
                 </div>
-                
-
-                
-
-                
-                <p class="footer-note gsap-element mt-2 highlight"><i class="ph-fill ph-check-circle" style="color: var(--green-col); vertical-align: text-bottom; margin-right: 5px;"></i> All 'Must Have' stories are finished in Sprints 1 & 2 before we start any 'Should Have' work.</p>
+                <p class="footer-note gsap-element mt-2 highlight"><i class="ph-fill ph-check-circle" style="color: var(--green-col); vertical-align: text-bottom; margin-right: 5px;"></i> Stories are delivered in strict priority order — highest priority stories completed first.</p>
             </div>
             <div class="speech-notes">Our backlog is the engine of the project. We broke the requirements down into 39 small, manageable pieces. We prioritized them so that the most important features—the 'Must Haves'—are delivered first, ensuring the core system works correctly as soon as possible.</div>
         </section>
@@ -309,54 +303,60 @@
                             <tr>
                                 <th>ID</th>
                                 <th>User Story</th>
-                                <th>P</th>
+                                <th>Priority #</th>
                                 <th>SP</th>
                                 <th>Sprint</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td><strong>US-01</strong></td><td class="us-text">As a User, I want to create an account so that I can access the system's secure services.</td><td>M</td><td>3</td><td>S1</td></tr>
+                            <tr><td><strong>US-01</strong></td><td class="us-text">As a User, I want to create an account so that I can access the system's secure services.</td><td>1</td><td>3</td><td>S1</td></tr>
+                            <tr><td><strong>US-02</strong></td><td class="us-text">As Central Service, I want to create a new library so that the network can expand.</td><td>2</td><td>3</td><td>S1</td></tr>
+                            <tr><td><strong>US-03</strong></td><td class="us-text">As Central Service, I want to hire staff for a library so that each branch is properly managed.</td><td>3</td><td>2</td><td>S1</td></tr>
+                            <tr><td><strong>US-04</strong></td><td class="us-text">As Central Service, I want to add new services to a library to diversify the offer.</td><td>4</td><td>3</td><td>S4</td></tr>
+                            <tr><td><strong>US-05</strong></td><td class="us-text">As Central Service, I want to assign a general secretary to a library so that it has an identified manager.</td><td>5</td><td>3</td><td>S1</td></tr>
+                            <tr><td><strong>US-06</strong></td><td class="us-text">As Central Service, I want to assign a unique number to each new book selected to avoid any confusion between works with the same name.</td><td>6</td><td>3</td><td>S1</td></tr>
+                            <tr><td><strong>US-07</strong></td><td class="us-text">As Central Service, I want to register a professional reader so that they are uniquely identified.</td><td>7</td><td>3</td><td>S1</td></tr>
+                            <tr><td><strong>US-08</strong></td><td class="us-text">As Central Service, I want to register an author with a unique code so that authors of the same name are not confused.</td><td>8</td><td>3</td><td>S1</td></tr>
+                            <tr><td><strong>US-09</strong></td><td class="us-text">As Central Service, I want to register the information of a publisher to manage them.</td><td>9</td><td>3</td><td>S1</td></tr>
+                            <tr><td><strong>US-10</strong></td><td class="us-text">As Central Service, I want to define the status of a publisher (active or disappeared) to reflect their real situation.</td><td>10</td><td>3</td><td>S3</td></tr>
+                            <tr><td><strong>US-11</strong></td><td class="us-text">As a Professional Reader, I want to write a summary for a book so that its content is documented.</td><td>11</td><td>3</td><td>S1</td></tr>
+                            <tr><td><strong>US-12</strong></td><td class="us-text">As a Resident, I want to create my reader card online to register at a library.</td><td>12</td><td>5</td><td>S2</td></tr>
+                            <tr><td><strong>US-13</strong></td><td class="us-text">As a Professional Reader, I want to give my opinion on the purchase of a book so that the Central Service can decide.</td><td>13</td><td>3</td><td>S2</td></tr>
+                            <tr><td><strong>US-14</strong></td><td class="us-text">As Central Service, I want to decide the authorization of a book after examination so that controversial books are not public.</td><td>14</td><td>3</td><td>S2</td></tr>
+                            <tr><td><strong>US-15</strong></td><td class="us-text">As a Professional Reader, I want to attribute thematic keywords to a book so that readers can search by theme.</td><td>15</td><td>2</td><td>S4</td></tr>
+                            <tr><td><strong>US-16</strong></td><td class="us-text">As Central Service, I want to associate an author with a literary genre to classify them correctly.</td><td>16</td><td>2</td><td>S3</td></tr>
+                            <tr><td><strong>US-17</strong></td><td class="us-text">As a Professional Reader, I want to add a descriptive comment to a literary genre to provide more information.</td><td>17</td><td>2</td><td>S4</td></tr>
+                            <tr><td><strong>US-18</strong></td><td class="us-text">As Central Service, I want to consult the different editions of a work to choose the one to offer.</td><td>18</td><td>3</td><td>S3</td></tr>
+                            <tr><td><strong>US-19</strong></td><td class="us-text">As Central Service, I want to consult the price of editions of a work to select the most economical option.</td><td>19</td><td>3</td><td>S3</td></tr>
+                            <tr><td><strong>US-20</strong></td><td class="us-text">As Central Service, I want to register the purchase of a work to make it available for reading.</td><td>20</td><td>3</td><td>S2</td></tr>
+                            <tr><td><strong>US-21</strong></td><td class="us-text">As a System, I want to authorize the use of a publisher marked as disappeared so that old books can be managed.</td><td>21</td><td>3</td><td>S4</td></tr>
+                            <tr><td><strong>US-22</strong></td><td class="us-text">As Central Service, I want to buy copies of a book according to an edition and a publisher to enrich the stock.</td><td>22</td><td>3</td><td>S2</td></tr>
+                            <tr><td><strong>US-23</strong></td><td class="us-text">As Central Service, I want to buy copies of a book (continued) to complete the supply.</td><td>23</td><td>3</td><td>S2</td></tr>
+                            <tr><td><strong>US-24</strong></td><td class="us-text">As a System, I want to automatically number copies when they are received to identify them.</td><td>24</td><td>3</td><td>S2</td></tr>
+                            <tr><td><strong>US-25</strong></td><td class="us-text">As Central Service, I want to distribute new books between libraries to balance resources.</td><td>25</td><td>5</td><td>S2</td></tr>
+                            <tr><td><strong>US-26</strong></td><td class="us-text">As a Librarian, I want to manage the condition of books (new, good condition...) to track their condition over time.</td><td>26</td><td>3</td><td>S3</td></tr>
+                            <tr><td><strong>US-27</strong></td><td class="us-text">As a Reader, I want to renew my card with a proof of address to continue borrowing.</td><td>27</td><td>3</td><td>S4</td></tr>
+                            <tr><td><strong>US-28</strong></td><td class="us-text">As a System, I want to register the loan of a child under their mother's number to ensure correct tracking.</td><td>28</td><td>3</td><td>S4</td></tr>
+                            <tr><td><strong>US-29</strong></td><td class="us-text">As a System, I want to apply the global limit of 3 books per reader so that no one holds more than 3.</td><td>29</td><td>5</td><td>S2</td></tr>
+                            <tr><td><strong>US-30</strong></td><td class="us-text">As a Librarian, I want to apply a late fee to encourage compliance with deadlines.</td><td>30</td><td>4</td><td>S3</td></tr>
+                            <tr><td><strong>US-31</strong></td><td class="us-text">As a Librarian, I want to bill a restoration fee so that the library is compensated.</td><td>31</td><td>3</td><td>S4</td></tr>
+                            <tr><td><strong>US-32</strong></td><td class="us-text">As a Librarian, I want to record a conflict with a reader so that the borrowing library manages the incident.</td><td>32</td><td>5</td><td>S4</td></tr>
+                            <tr><td><strong>US-33</strong></td><td class="us-text">As a Librarian, I want to consult the full history of a book to follow it across the entire network.</td><td>33</td><td>5</td><td>S4</td></tr>
+                            <tr><td><strong>US-34</strong></td><td class="us-text">As a Reader, I want to check the availability of a book online to know if it can be borrowed.</td><td>34</td><td>3</td><td>S3</td></tr>
+                            <tr><td><strong>US-35</strong></td><td class="us-text">As a Reader, I want to reserve a book online so that it is set aside for me.</td><td>35</td><td>3</td><td>S3</td></tr>
+                            <tr><td><strong>US-36</strong></td><td class="us-text">As a System, I want to automatically cancel a reservation after 48h so that the book becomes available again.</td><td>36</td><td>3</td><td>S3</td></tr>
+                            <tr><td><strong>US-37</strong></td><td class="us-text">As Central Service, I want to consult the loan statistics to analyze library usage.</td><td>37</td><td>3</td><td>S4</td></tr>
+                            <tr><td><strong>US-38</strong></td><td class="us-text">As a Librarian, I want to identify libraries in surplus or deficit to initiate a transfer.</td><td>38</td><td>3</td><td>S3</td></tr>
+                            <tr><td><strong>US-39</strong></td><td class="us-text">As a Librarian, I want to create a transfer slip so that the movement of books is formally recorded.</td><td>39</td><td>3</td><td>S3</td></tr>
+                            <tr><td><strong>US-40</strong></td><td class="us-text">As a Reader, I want to search for a book by title, author, or keyword so that I can find what interests me before traveling.</td><td>40</td><td>3</td><td>S1</td></tr>
+                            <tr><td><strong>US-41</strong></td><td class="us-text">As a User, I want to authenticate to access my secure space according to my role.</td><td>41</td><td>3</td><td>S1</td></tr>
+                        </tbody>
+
                             <tr><td><strong>US-02</strong></td><td class="us-text">As Central Service, I want to create a new library so that the network can expand.</td><td>M</td><td>3</td><td>S1</td></tr>
                             <tr><td><strong>US-03</strong></td><td class="us-text">As Central Service, I want to hire staff for a library so that each branch is properly managed.</td><td>M</td><td>2</td><td>S1</td></tr>
                             <tr><td><strong>US-04</strong></td><td class="us-text">As Central Service, I want to add new services to a library to diversify the offer.</td><td>S</td><td>3</td><td>S4</td></tr>
-                            <tr><td><strong>US-05</strong></td><td class="us-text">As Central Service, I want to assign a general secretary to a library so that it has an identified manager.</td><td>M</td><td>3</td><td>S1</td></tr>
-                            <tr><td><strong>US-06</strong></td><td class="us-text">As Central Service, I want to assign a unique number to each new book selected to avoid any confusion between works with the same name.</td><td>M</td><td>3</td><td>S1</td></tr>
-                            <tr><td><strong>US-07</strong></td><td class="us-text">As Central Service, I want to register a professional reader so that they are uniquely identified.</td><td>M</td><td>3</td><td>S1</td></tr>
-                            <tr><td><strong>US-08</strong></td><td class="us-text">As Central Service, I want to register an author with a unique code so that authors of the same name are not confused.</td><td>M</td><td>3</td><td>S1</td></tr>
-                            <tr><td><strong>US-09</strong></td><td class="us-text">As Central Service, I want to register the information of a publisher to manage them.</td><td>M</td><td>3</td><td>S1</td></tr>
-                            <tr><td><strong>US-10</strong></td><td class="us-text">As Central Service, I want to define the status of a publisher (active or disappeared) to reflect their real situation.</td><td>S</td><td>3</td><td>S3</td></tr>
-                            <tr><td><strong>US-11</strong></td><td class="us-text">As a Professional Reader, I want to write a summary for a book so that its content is documented.</td><td>M</td><td>3</td><td>S1</td></tr>
-                            <tr><td><strong>US-12</strong></td><td class="us-text">As a Resident, I want to create my reader card online to register at a library.</td><td>M</td><td>5</td><td>S2</td></tr>
-                            <tr><td><strong>US-13</strong></td><td class="us-text">As a Professional Reader, I want to give my opinion on the purchase of a book so that the Central Service can decide.</td><td>M</td><td>3</td><td>S2</td></tr>
-                            <tr><td><strong>US-14</strong></td><td class="us-text">As Central Service, I want to decide the authorization of a book after examination so that controversial books are not public.</td><td>M</td><td>3</td><td>S2</td></tr>
-                            <tr><td><strong>US-15</strong></td><td class="us-text">As a Professional Reader, I want to attribute thematic keywords to a book so that readers can search by theme.</td><td>S</td><td>2</td><td>S4</td></tr>
-                            <tr><td><strong>US-16</strong></td><td class="us-text">As Central Service, I want to associate an author with a literary genre to classify them correctly.</td><td>S</td><td>2</td><td>S3</td></tr>
-                            <tr><td><strong>US-17</strong></td><td class="us-text">As a Professional Reader, I want to add a descriptive comment to a literary genre to provide more information.</td><td>C</td><td>2</td><td>S4</td></tr>
-                            <tr><td><strong>US-18</strong></td><td class="us-text">As Central Service, I want to consult the different editions of a work to choose the one to offer.</td><td>S</td><td>3</td><td>S3</td></tr>
-                            <tr><td><strong>US-19</strong></td><td class="us-text">As Central Service, I want to consult the price of editions of a work to select the most economical option.</td><td>S</td><td>3</td><td>S3</td></tr>
-                            <tr><td><strong>US-20</strong></td><td class="us-text">As Central Service, I want to register the purchase of a work to make it available for reading.</td><td>M</td><td>3</td><td>S2</td></tr>
-                            <tr><td><strong>US-21</strong></td><td class="us-text">As a System, I want to authorize the use of a publisher marked as disappeared so that old books can be managed.</td><td>S</td><td>3</td><td>S4</td></tr>
-                            <tr><td><strong>US-22</strong></td><td class="us-text">As Central Service, I want to buy copies of a book according to an edition and a publisher to enrich the stock.</td><td>M</td><td>3</td><td>S2</td></tr>
-                            <tr><td><strong>US-23</strong></td><td class="us-text">As Central Service, I want to buy copies of a book (continued) to complete the supply.</td><td>M</td><td>3</td><td>S2</td></tr>
-                            <tr><td><strong>US-24</strong></td><td class="us-text">As a System, I want to automatically number copies when they are received to identify them.</td><td>M</td><td>3</td><td>S2</td></tr>
-                            <tr><td><strong>US-25</strong></td><td class="us-text">As Central Service, I want to distribute new books between libraries to balance resources.</td><td>M</td><td>5</td><td>S2</td></tr>
-                            <tr><td><strong>US-26</strong></td><td class="us-text">As a Librarian, I want to manage the condition of books (new, good condition...) to track their condition over time.</td><td>S</td><td>3</td><td>S3</td></tr>
-                            <tr><td><strong>US-27</strong></td><td class="us-text">As a Reader, I want to renew my card with a proof of address to continue borrowing.</td><td>S</td><td>3</td><td>S4</td></tr>
-                            <tr><td><strong>US-28</strong></td><td class="us-text">As a System, I want to register the loan of a child under their mother's number to ensure correct tracking.</td><td>S</td><td>3</td><td>S4</td></tr>
-                            <tr><td><strong>US-29</strong></td><td class="us-text">As a System, I want to apply the global limit of 3 books per reader so that no one holds more than 3.</td><td>M</td><td>5</td><td>S2</td></tr>
-                            <tr><td><strong>US-30</strong></td><td class="us-text">As a Librarian, I want to apply a late fee to encourage compliance with deadlines.</td><td>M</td><td>4</td><td>S3</td></tr>
-                            <tr><td><strong>US-31</strong></td><td class="us-text">As a Librarian, I want to bill a restoration fee so that the library is compensated.</td><td>S</td><td>3</td><td>S4</td></tr>
-                            <tr><td><strong>US-32</strong></td><td class="us-text">As a Librarian, I want to record a conflict with a reader so that the borrowing library manages the incident.</td><td>S</td><td>5</td><td>S4</td></tr>
-                            <tr><td><strong>US-33</strong></td><td class="us-text">As a Librarian, I want to consult the full history of a book to follow it across the entire network.</td><td>S</td><td>5</td><td>S4</td></tr>
-                            <tr><td><strong>US-34</strong></td><td class="us-text">As a Reader, I want to check the availability of a book online to know if it can be borrowed.</td><td>M</td><td>3</td><td>S3</td></tr>
-                            <tr><td><strong>US-35</strong></td><td class="us-text">As a Reader, I want to reserve a book online so that it is set aside for me.</td><td>M</td><td>3</td><td>S3</td></tr>
-                            <tr><td><strong>US-36</strong></td><td class="us-text">As a System, I want to automatically cancel a reservation after 48h so that the book becomes available again.</td><td>M</td><td>3</td><td>S3</td></tr>
-                            <tr><td><strong>US-37</strong></td><td class="us-text">As Central Service, I want to consult the loan statistics to analyze library usage.</td><td>S</td><td>3</td><td>S4</td></tr>
-                            <tr><td><strong>US-38</strong></td><td class="us-text">As a Librarian, I want to identify libraries in surplus or deficit to initiate a transfer.</td><td>S</td><td>3</td><td>S3</td></tr>
-                            <tr><td><strong>US-39</strong></td><td class="us-text">As a Librarian, I want to create a transfer slip so that the movement of books is formally recorded.</td><td>M</td><td>3</td><td>S3</td></tr>
-                            <tr><td><strong>US-40</strong></td><td class="us-text">As a Reader, I want to search for a book by title, author, or keyword so that I can find what interests me before traveling.</td><td>M</td><td>3</td><td>S1</td></tr>
-                            <tr><td><strong>US-41</strong></td><td class="us-text">As a User, I want to authenticate to access my secure space according to my role.</td><td>M</td><td>3</td><td>S1</td></tr>
-                        </tbody>
+
+
                     </table>
                 </div>
 
@@ -432,17 +432,17 @@
                             <table class="backlog-table mini-table">
                                 <thead><tr><th>ID</th><th>User Story</th><th>P</th><th>SP</th></tr></thead>
                                 <tbody>
-                                    <tr><td><strong>US-01</strong></td><td style="font-size: 0.7rem;">As a User, I want to create an account so that I can access the system's secure services.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-41</strong></td><td style="font-size: 0.7rem;">As a User, I want to authenticate to access my secure space according to my role.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-02</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to create a new library so that the network can expand.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-03</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to hire staff for a library so that each branch is properly managed.</td><td><span class="prio-badge prio-must">M</span></td><td>2</td></tr>
-                                    <tr><td><strong>US-05</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to assign a general secretary to a library so that it has an identified manager.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-06</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to assign a unique number to each new book selected to avoid any confusion between works with the same name.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-08</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to register an author with a unique code so that authors of the same name are not confused.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-09</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to register the information of a publisher to manage them.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-07</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to register a professional reader so that they are uniquely identified.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-40</strong></td><td style="font-size: 0.7rem;">As a Reader, I want to search for a book by title, author, or keyword so that I can find what interests me before traveling.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-11</strong></td><td style="font-size: 0.7rem;">As a Professional Reader, I want to write a summary for a book so that its content is documented.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
+                                    <tr><td><strong>US-01</strong></td><td style="font-size: 0.7rem;">As a User, I want to create an account so that I can access the system's secure services.</td><td>1</td><td>3</td></tr>
+                                    <tr><td><strong>US-41</strong></td><td style="font-size: 0.7rem;">As a User, I want to authenticate to access my secure space according to my role.</td><td>41</td><td>3</td></tr>
+                                    <tr><td><strong>US-02</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to create a new library so that the network can expand.</td><td>2</td><td>3</td></tr>
+                                    <tr><td><strong>US-03</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to hire staff for a library so that each branch is properly managed.</td><td>3</td><td>2</td></tr>
+                                    <tr><td><strong>US-05</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to assign a general secretary to a library so that it has an identified manager.</td><td>5</td><td>3</td></tr>
+                                    <tr><td><strong>US-06</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to assign a unique number to each new book selected to avoid any confusion between works with the same name.</td><td>6</td><td>3</td></tr>
+                                    <tr><td><strong>US-08</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to register an author with a unique code so that authors of the same name are not confused.</td><td>8</td><td>3</td></tr>
+                                    <tr><td><strong>US-09</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to register the information of a publisher to manage them.</td><td>9</td><td>3</td></tr>
+                                    <tr><td><strong>US-07</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to register a professional reader so that they are uniquely identified.</td><td>7</td><td>3</td></tr>
+                                    <tr><td><strong>US-40</strong></td><td style="font-size: 0.7rem;">As a Reader, I want to search for a book by title, author, or keyword so that I can find what interests me before traveling.</td><td>40</td><td>3</td></tr>
+                                    <tr><td><strong>US-11</strong></td><td style="font-size: 0.7rem;">As a Professional Reader, I want to write a summary for a book so that its content is documented.</td><td>11</td><td>3</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -469,15 +469,15 @@
                             <table class="backlog-table mini-table">
                                 <thead><tr><th>ID</th><th>User Story</th><th>P</th><th>SP</th></tr></thead>
                                 <tbody>
-                                    <tr><td><strong>US-12</strong></td><td style="font-size: 0.7rem;">As a Resident, I want to create my reader card online to register at a library.</td><td><span class="prio-badge prio-must">M</span></td><td>5</td></tr>
-                                    <tr><td><strong>US-13</strong></td><td style="font-size: 0.7rem;">As a Professional Reader, I want to give my opinion on the purchase of a book so that the Central Service can decide.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-14</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to decide the authorization of a book after examination so that controversial books are not public.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-20</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to register the purchase of a work to make it available for reading.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-22</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to buy copies of a book according to an edition and a publisher to enrich the stock.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-23</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to buy copies of a book (continued) to complete the supply.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-24</strong></td><td style="font-size: 0.7rem;">As a System, I want to automatically number copies when they are received to identify them.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-25</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to distribute new books between libraries to balance resources.</td><td><span class="prio-badge prio-must">M</span></td><td>5</td></tr>
-                                    <tr><td><strong>US-29</strong></td><td style="font-size: 0.7rem;">As a System, I want to apply the global limit of 3 books per reader so that no one holds more than 3.</td><td><span class="prio-badge prio-must">M</span></td><td>5</td></tr>
+                                    <tr><td><strong>US-12</strong></td><td style="font-size: 0.7rem;">As a Resident, I want to create my reader card online to register at a library.</td><td>12</td><td>5</td></tr>
+                                    <tr><td><strong>US-13</strong></td><td style="font-size: 0.7rem;">As a Professional Reader, I want to give my opinion on the purchase of a book so that the Central Service can decide.</td><td>13</td><td>3</td></tr>
+                                    <tr><td><strong>US-14</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to decide the authorization of a book after examination so that controversial books are not public.</td><td>14</td><td>3</td></tr>
+                                    <tr><td><strong>US-20</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to register the purchase of a work to make it available for reading.</td><td>20</td><td>3</td></tr>
+                                    <tr><td><strong>US-22</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to buy copies of a book according to an edition and a publisher to enrich the stock.</td><td>22</td><td>3</td></tr>
+                                    <tr><td><strong>US-23</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to buy copies of a book (continued) to complete the supply.</td><td>23</td><td>3</td></tr>
+                                    <tr><td><strong>US-24</strong></td><td style="font-size: 0.7rem;">As a System, I want to automatically number copies when they are received to identify them.</td><td>24</td><td>3</td></tr>
+                                    <tr><td><strong>US-25</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to distribute new books between libraries to balance resources.</td><td>25</td><td>5</td></tr>
+                                    <tr><td><strong>US-29</strong></td><td style="font-size: 0.7rem;">As a System, I want to apply the global limit of 3 books per reader so that no one holds more than 3.</td><td>29</td><td>5</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -506,17 +506,17 @@
                             <table class="backlog-table mini-table">
                                 <thead><tr><th>ID</th><th>User Story</th><th>P</th><th>SP</th></tr></thead>
                                 <tbody>
-                                    <tr><td><strong>US-30</strong></td><td style="font-size: 0.7rem;">As a Librarian, I want to apply a late fee to encourage compliance with deadlines.</td><td><span class="prio-badge prio-must">M</span></td><td>4</td></tr>
-                                    <tr><td><strong>US-34</strong></td><td style="font-size: 0.7rem;">As a Reader, I want to check the availability of a book online to know if it can be borrowed.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-35</strong></td><td style="font-size: 0.7rem;">As a Reader, I want to reserve a book online so that it is set aside for me.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-36</strong></td><td style="font-size: 0.7rem;">As a System, I want to automatically cancel a reservation after 48h so that the book becomes available again.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-39</strong></td><td style="font-size: 0.7rem;">As a Librarian, I want to create a transfer slip so that the movement of books is formally recorded.</td><td><span class="prio-badge prio-must">M</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-10</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to define the status of a publisher (active or disappeared) to reflect their real situation.</td><td><span class="prio-badge prio-should">S</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-16</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to associate an author with a literary genre to classify them correctly.</td><td><span class="prio-badge prio-should">S</span></td><td>2</td></tr>
-                                    <tr><td><strong>US-18</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to consult the different editions of a work to choose the one to offer.</td><td><span class="prio-badge prio-should">S</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-19</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to consult the price of editions of a work to select the most economical option.</td><td><span class="prio-badge prio-should">S</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-38</strong></td><td style="font-size: 0.7rem;">As a Librarian, I want to identify libraries in surplus or deficit to initiate a transfer.</td><td><span class="prio-badge prio-should">S</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-26</strong></td><td style="font-size: 0.7rem;">As a Librarian, I want to manage the condition of books (new, good condition...) to track their condition over time.</td><td><span class="prio-badge prio-should">S</span></td><td>3</td></tr>
+                                    <tr><td><strong>US-30</strong></td><td style="font-size: 0.7rem;">As a Librarian, I want to apply a late fee to encourage compliance with deadlines.</td><td>30</td><td>4</td></tr>
+                                    <tr><td><strong>US-34</strong></td><td style="font-size: 0.7rem;">As a Reader, I want to check the availability of a book online to know if it can be borrowed.</td><td>34</td><td>3</td></tr>
+                                    <tr><td><strong>US-35</strong></td><td style="font-size: 0.7rem;">As a Reader, I want to reserve a book online so that it is set aside for me.</td><td>35</td><td>3</td></tr>
+                                    <tr><td><strong>US-36</strong></td><td style="font-size: 0.7rem;">As a System, I want to automatically cancel a reservation after 48h so that the book becomes available again.</td><td>36</td><td>3</td></tr>
+                                    <tr><td><strong>US-39</strong></td><td style="font-size: 0.7rem;">As a Librarian, I want to create a transfer slip so that the movement of books is formally recorded.</td><td>39</td><td>3</td></tr>
+                                    <tr><td><strong>US-10</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to define the status of a publisher (active or disappeared) to reflect their real situation.</td><td>10</td><td>3</td></tr>
+                                    <tr><td><strong>US-16</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to associate an author with a literary genre to classify them correctly.</td><td>16</td><td>2</td></tr>
+                                    <tr><td><strong>US-18</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to consult the different editions of a work to choose the one to offer.</td><td>18</td><td>3</td></tr>
+                                    <tr><td><strong>US-19</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to consult the price of editions of a work to select the most economical option.</td><td>19</td><td>3</td></tr>
+                                    <tr><td><strong>US-38</strong></td><td style="font-size: 0.7rem;">As a Librarian, I want to identify libraries in surplus or deficit to initiate a transfer.</td><td>38</td><td>3</td></tr>
+                                    <tr><td><strong>US-26</strong></td><td style="font-size: 0.7rem;">As a Librarian, I want to manage the condition of books (new, good condition...) to track their condition over time.</td><td>26</td><td>3</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -544,16 +544,16 @@
                             <table class="backlog-table mini-table">
                                 <thead><tr><th>ID</th><th>User Story</th><th>P</th><th>SP</th></tr></thead>
                                 <tbody>
-                                    <tr><td><strong>US-27</strong></td><td style="font-size: 0.7rem;">As a Reader, I want to renew my card with a proof of address to continue borrowing.</td><td><span class="prio-badge prio-should">S</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-28</strong></td><td style="font-size: 0.7rem;">As a System, I want to register the loan of a child under their mother's number to ensure correct tracking.</td><td><span class="prio-badge prio-should">S</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-31</strong></td><td style="font-size: 0.7rem;">As a Librarian, I want to bill a restoration fee so that the library is compensated.</td><td><span class="prio-badge prio-should">S</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-32</strong></td><td style="font-size: 0.7rem;">As a Librarian, I want to record a conflict with a reader so that the borrowing library manages the incident.</td><td><span class="prio-badge prio-should">S</span></td><td>5</td></tr>
-                                    <tr><td><strong>US-33</strong></td><td style="font-size: 0.7rem;">As a Librarian, I want to consult the full history of a book to follow it across the entire network.</td><td><span class="prio-badge prio-should">S</span></td><td>5</td></tr>
-                                    <tr><td><strong>US-37</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to consult the loan statistics to analyze library usage.</td><td><span class="prio-badge prio-should">S</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-21</strong></td><td style="font-size: 0.7rem;">As a System, I want to authorize the use of a publisher marked as disappeared so that old books can be managed.</td><td><span class="prio-badge prio-should">S</span></td><td>3</td></tr>
-                                    <tr><td><strong>US-15</strong></td><td style="font-size: 0.7rem;">As a Professional Reader, I want to attribute thematic keywords to a book so that readers can search by theme.</td><td><span class="prio-badge prio-should">S</span></td><td>2</td></tr>
-                                    <tr><td><strong>US-17</strong></td><td style="font-size: 0.7rem;">As a Professional Reader, I want to add a descriptive comment to a literary genre to provide more information.</td><td><span class="prio-badge prio-could">C</span></td><td>2</td></tr>
-                                    <tr><td><strong>US-04</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to add new services to a library to diversify the offer.</td><td><span class="prio-badge prio-should">S</span></td><td>3</td></tr>
+                                    <tr><td><strong>US-27</strong></td><td style="font-size: 0.7rem;">As a Reader, I want to renew my card with a proof of address to continue borrowing.</td><td>27</td><td>3</td></tr>
+                                    <tr><td><strong>US-28</strong></td><td style="font-size: 0.7rem;">As a System, I want to register the loan of a child under their mother's number to ensure correct tracking.</td><td>28</td><td>3</td></tr>
+                                    <tr><td><strong>US-31</strong></td><td style="font-size: 0.7rem;">As a Librarian, I want to bill a restoration fee so that the library is compensated.</td><td>31</td><td>3</td></tr>
+                                    <tr><td><strong>US-32</strong></td><td style="font-size: 0.7rem;">As a Librarian, I want to record a conflict with a reader so that the borrowing library manages the incident.</td><td>32</td><td>5</td></tr>
+                                    <tr><td><strong>US-33</strong></td><td style="font-size: 0.7rem;">As a Librarian, I want to consult the full history of a book to follow it across the entire network.</td><td>33</td><td>5</td></tr>
+                                    <tr><td><strong>US-37</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to consult the loan statistics to analyze library usage.</td><td>37</td><td>3</td></tr>
+                                    <tr><td><strong>US-21</strong></td><td style="font-size: 0.7rem;">As a System, I want to authorize the use of a publisher marked as disappeared so that old books can be managed.</td><td>21</td><td>3</td></tr>
+                                    <tr><td><strong>US-15</strong></td><td style="font-size: 0.7rem;">As a Professional Reader, I want to attribute thematic keywords to a book so that readers can search by theme.</td><td>15</td><td>2</td></tr>
+                                    <tr><td><strong>US-17</strong></td><td style="font-size: 0.7rem;">As a Professional Reader, I want to add a descriptive comment to a literary genre to provide more information.</td><td>17</td><td>2</td></tr>
+                                    <tr><td><strong>US-04</strong></td><td style="font-size: 0.7rem;">As Central Service, I want to add new services to a library to diversify the offer.</td><td>4</td><td>3</td></tr>
                                 </tbody>
                             </table>
                         </div>
