@@ -1,0 +1,679 @@
+/* --- CSS Variables & Theme --- */
+:root {
+    --bg-dark: #f8f9fa;
+    --accent: #d90429;
+    --teal: #023e8a;
+    --text-light: #1a1a2e;
+    --text-dim: #4a4e69;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    
+    --must-col: #d90429;
+    --should-col: #f4a261;
+    --could-col: #0077b6;
+    --green-col: #2a9d8f;
+
+    --font-main: 'Inter', sans-serif;
+    --font-heading: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--text-light);
+    background-color: var(--bg-dark);
+    overflow: hidden; /* Prevent scrolling, navigation is slide-based */
+    height: 100vh;
+    width: 100vw;
+}
+
+/* --- Three.js Background Canvas --- */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Behind everything */
+    background: radial-gradient(circle at center, #ffffff 0%, #e9ecef 100%);
+}
+
+/* --- Header / Navigation --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    z-index: 100;
+    background: linear-gradient(to right, rgba(248, 249, 250, 0.95), transparent);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    height: 40px;
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
+}
+
+.logo-text {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+}
+
+.fixed-counter {
+    position: fixed;
+    bottom: 30px;
+    right: 40px;
+    z-index: 1000;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--teal);
+    font-size: 1.2rem;
+    background: var(--glass-bg);
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* --- Main Presentation Area --- */
+#presentation {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 80px; /* offset header */
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    padding: 80px 50px 50px;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.content {
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+.content.wide {
+    max-width: 1400px;
+}
+
+/* --- Typography & Elements --- */
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    line-height: 1.2;
+}
+
+.slide-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.slide-subtitle {
+    font-size: 1.5rem;
+    color: var(--teal);
+    font-style: italic;
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+.section-heading {
+    font-size: 1.8rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.intro-text {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: var(--text-dim);
+    margin: 0 auto 3rem;
+    max-width: 900px;
+}
+
+.text-center { text-align: center; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.mb-3 { margin-bottom: 3rem; }
+.mt-2 { margin-top: 2rem; }
+.mt-3 { margin-top: 3rem; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.w-80 { width: 80%; }
+
+.accent { color: var(--accent); }
+.italic-teal { color: var(--teal); font-style: italic; font-weight: 300; }
+.teal-text { color: var(--teal); }
+.accent-text { color: var(--accent); }
+.orange-text { color: var(--should-col); }
+.green-text { color: var(--green-col); }
+.must-text { color: var(--must-col); }
+.should-text { color: var(--should-col); }
+.could-text { color: var(--could-col); }
+
+/* --- Title Slide Specifics --- */
+.title-slide h1 {
+    font-size: 4.5rem;
+    font-weight: 800;
+}
+.title-slide h2 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+.title-slide h3 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+.divider {
+    height: 4px;
+    width: 150px;
+    background: var(--accent);
+    margin: 2rem auto;
+    border-radius: 2px;
+}
+.presenters {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+.metadata {
+    font-size: 1.2rem;
+    color: var(--text-dim);
+}
+
+/* --- Glassmorphism Cards --- */
+.cards-grid {
+    display: grid;
+    gap: 2rem;
+}
+.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.cols-1 { grid-template-columns: 1fr; }
+
+/* --- Split Layout --- */
+.split-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+.left-col, .right-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid var(--accent);
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-top-color: var(--teal);
+}
+
+.glass-card .icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.glass-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+}
+
+.glass-card p {
+    color: var(--text-dim);
+    line-height: 1.5;
+    font-size: 1.1rem;
+}
+
+.glass-card.compact {
+    padding: 1.5rem;
+}
+.glass-card.compact .icon { font-size: 2rem; }
+.glass-card.compact h3 { font-size: 1.2rem; }
+.glass-card.compact p { font-size: 1rem; }
+
+/* --- Tags --- */
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.glass-tag {
+    background: rgba(0, 180, 216, 0.15);
+    border: 1px solid rgba(0, 180, 216, 0.3);
+    color: var(--teal);
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    backdrop-filter: blur(5px);
+}
+
+/* --- Stats Grid --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.stat-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(5px);
+}
+
+.stat-card h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.stat-card p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- MoSCoW Breakdown --- */
+.moscow-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.moscow-card {
+    background: var(--glass-bg);
+    border-radius: 10px;
+    padding: 1.5rem;
+    border-left: 5px solid;
+}
+
+.moscow-card.must { border-color: var(--must-col); }
+.moscow-card.should { border-color: var(--should-col); }
+.moscow-card.could { border-color: var(--could-col); }
+
+.moscow-card h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+.moscow-card p { color: var(--text-dim); font-size: 1.1rem; }
+
+/* --- Sprint Planning --- */
+.sprint-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.sprint-card {
+    background: var(--glass-bg);
+    border-top: 5px solid;
+    border-radius: 10px;
+    padding: 1.5rem;
+    backdrop-filter: blur(5px);
+}
+
+.border-must { border-color: var(--must-col); }
+.border-should { border-color: var(--should-col); }
+.border-could { border-color: var(--could-col); }
+
+.sprint-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.sprint-id {
+    font-size: 2rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+}
+
+.text-must { color: var(--must-col); }
+.text-should { color: var(--should-col); }
+.text-could { color: var(--could-col); }
+
+.sprint-prio {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: white;
+}
+
+.bg-must { background-color: var(--must-col); }
+.bg-should { background-color: var(--should-col); }
+.bg-could { background-color: var(--could-col); }
+
+.sprint-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    height: 3rem; /* Fixed height for alignment */
+}
+
+.sp-text { font-size: 1.8rem; font-weight: 700; color: var(--teal); margin-bottom: 1rem; }
+.us-text { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 1rem; min-height: 2.5rem; }
+.desc-text { font-size: 0.95rem; line-height: 1.4; color: var(--text-light); }
+
+/* --- UML Grid --- */
+.uml-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.uml-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.uml-img {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 10px;
+    background: white; /* diagrams have white bg */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    cursor: zoom-in;
+    transition: transform 0.2s;
+}
+
+.uml-img:hover {
+    transform: scale(1.02);
+}
+
+/* --- Workflow Styles --- */
+.workflow-anim {
+    transition: transform 0.3s ease;
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 20px rgba(217, 4, 41, 0.2);
+}
+
+.workflow-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--accent);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    z-index: 5;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.workflow-caption {
+    margin-top: 15px;
+    font-size: 0.95rem;
+    color: var(--teal);
+    font-weight: 600;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+/* --- Product Backlog Table --- */
+.backlog-table-container, .sprint-backlog-container {
+    max-height: 380px;
+    overflow-y: auto;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    margin-top: 1.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--teal) transparent;
+}
+
+.backlog-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.backlog-table th {
+    position: sticky;
+    top: 0;
+    background: var(--teal);
+    color: white;
+    padding: 12px 15px;
+    font-size: 0.9rem;
+    z-index: 10;
+}
+
+.backlog-table td {
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.backlog-table tr:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+.prio-badge {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.prio-must { background: #6C3483; color: white; }
+.prio-should { background: #2E86C1; color: white; }
+.prio-could { background: #CA6F1E; color: white; }
+
+/* Custom scrollbar for Webkit */
+.backlog-table-container::-webkit-scrollbar {
+    width: 6px;
+}
+.backlog-table-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+.backlog-table-container::-webkit-scrollbar-thumb {
+    background: var(--teal);
+    border-radius: 10px;
+}
+
+/* --- Modal for zooming images --- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+    background: white;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* --- Misc --- */
+.footer-note {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    font-style: italic;
+}
+.highlight {
+    color: var(--teal);
+    font-weight: 600;
+}
+
+.takeaways p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    background: var(--glass-bg);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--teal);
+}
+
+/* --- Sprint Board --- */
+.sprint-board-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.board-column {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 15px;
+    padding: 1.5rem;
+    min-height: 400px;
+    border-top: 5px solid;
+    backdrop-filter: blur(5px);
+}
+
+.border-todo { border-color: var(--text-dim); }
+.border-in-progress { border-color: var(--orange-text); }
+.border-done { border-color: var(--green-col); }
+
+.column-header {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.badge {
+    background: var(--teal);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+}
+
+.board-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.scrum-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    font-size: 0.95rem;
+    text-align: left;
+    border-left: 3px solid #ccc;
+    position: relative;
+}
+
+.scrum-card .us-id {
+    font-weight: 800;
+    color: var(--teal);
+    margin-right: 5px;
+}
+
+.scrum-card.active { border-left-color: var(--orange-text); }
+.scrum-card.done { border-left-color: var(--green-col); opacity: 0.8; }
+.scrum-card.done::after {
+    content: '✔';
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: var(--green-col);
+    font-weight: bold;
+}
+
+/* --- Charts --- */
+.chart-container {
+    background: white;
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.chart-img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
